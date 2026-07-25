@@ -8,9 +8,13 @@
 	gap: 8px;
 }
 
-.version {
+.notice {
 	margin: 0;
-	font-size: 12px;
-	font-variant-numeric: tabular-nums;
+	font-size: 1.1rem;
+}
+
+.credit {
+	margin: 0;
+	font-size: 0.85rem;
 	color: var(--muted);
 }
