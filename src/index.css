@@ -16,6 +16,12 @@
 	--active-bg: light-dark(lightsteelblue, #3a4d6b);
 	--muted: light-dark(#767676, #999999);
 	--link: light-dark(#4a6fa5, #8ab0e0);
+
+	/* placeholder map: sea, graticule and landmasses */
+	--map-sea: light-dark(#f4f7fa, #171d24);
+	--map-grid: light-dark(#e2e8ee, #232b34);
+	--map-land: light-dark(#d7dee6, #2f3a45);
+	--map-land-stroke: light-dark(#c2ccd6, #3d4a57);
 }
 
 :root[data-theme='light'] {
