@@ -1,4 +1,4 @@
-[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/amerharb/palestinethanksyou.com)
+[![Version](https://img.shields.io/badge/version-2026.07.25-blue.svg)](https://github.com/amerharb/palestinethanksyou.com)
 # Palestine Thanks You
 
 Website for [palestinethanksyou.com](https://palestinethanksyou.com).

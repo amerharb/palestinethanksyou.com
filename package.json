@@ -1,6 +1,6 @@
 {
   "name": "palestinethanksyou",
-  "version": "0.1.0",
+  "version": "2026.07.25",
   "private": true,
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
