@@ -4,10 +4,13 @@ import WorldMap from './WorldMap'
 import { COUNTRIES, byNewest as countriesByNewest } from './countries'
 import { NEWS, byNewest as newsByNewest } from './news'
 import { formatDate } from './format'
+import { DEFAULT_LANG } from './lang'
 
 function App() {
 	const countries = countriesByNewest(COUNTRIES)
 	const news = newsByNewest(NEWS)
+	/* becomes state once there is a language picker */
+	const lang = DEFAULT_LANG
 
 	return (
 		<div className="App">
@@ -33,7 +36,7 @@ function App() {
 							{countries.map(c => (
 								<li key={c.code} className="country">
 									<span className="country-flag" aria-hidden="true">{c.flag}</span>
-									<span className="country-name">{c.name}</span>
+									<span className="country-name">{c.name[lang]}</span>
 									<time className="country-date" dateTime={c.recognized}>
 										{formatDate(c.recognized)}
 									</time>

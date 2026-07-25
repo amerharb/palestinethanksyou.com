@@ -1,8 +1,11 @@
+import { Lang } from './lang'
+
 export type Country = {
 	/* ISO 3166-1 alpha-2, lowercase — will be used to match the map's shapes
 	   once the map becomes interactive */
 	code: string
-	name: string
+	/* the country's name per language — see Lang in src/lang.ts */
+	name: Record<Lang, string>
 	flag: string
 	/* ISO date the country formally recognized the State of Palestine */
 	recognized: string
@@ -16,9 +19,9 @@ export type Country = {
  * the UI sorts newest-first (see byNewest).
  */
 export const COUNTRIES: Country[] = [
-	{ code: 'fr', name: 'France', flag: '🇫🇷', recognized: '2025-09-22' },
-	{ code: 'gb', name: 'United Kingdom', flag: '🇬🇧', recognized: '2025-09-21' },
-	{ code: 'es', name: 'Spain', flag: '🇪🇸', recognized: '2024-05-28' },
+	{code: 'fr', name: {en: 'France'}, flag: '🇫🇷', recognized: '2025-09-22'},
+	{code: 'gb', name: {en: 'United Kingdom'}, flag: '🇬🇧', recognized: '2025-09-21'},
+	{code: 'es', name: {en: 'Spain'}, flag: '🇪🇸', recognized: '2024-05-28'},
 ]
 
 // Most recent recognition first. ISO dates sort correctly as plain strings.
