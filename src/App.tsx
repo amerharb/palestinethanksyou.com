@@ -7,10 +7,10 @@ import { formatDate } from './format'
 import { DEFAULT_LANG } from './lang'
 
 function App() {
-	const countries = countriesByNewest(COUNTRIES)
-	const news = newsByNewest(NEWS)
 	/* becomes state once there is a language picker */
 	const lang = DEFAULT_LANG
+	const countries = countriesByNewest(COUNTRIES, lang)
+	const news = newsByNewest(NEWS)
 
 	return (
 		<div className="App">
@@ -44,7 +44,8 @@ function App() {
 							))}
 						</ol>
 						<p className="col-note">
-							{countries.length} of ~157 recognizing states listed so far.
+							{countries.length} states — the 157 UN members that recognize
+							Palestine, plus the Holy See and the Sahrawi Republic.
 						</p>
 					</section>
 
