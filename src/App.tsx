@@ -16,6 +16,7 @@ function App() {
 					kosovothanksyou.com
 				</a>
 			</p>
+			<p className="updated">Last update: {__APP_VERSION__}</p>
 			<Analytics/>
 		</div>
 	)
