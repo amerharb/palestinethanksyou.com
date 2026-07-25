@@ -26,14 +26,23 @@
 	gap: 32px;
 }
 
+/*
+ * Countries 25% / timeline 75% — fr units so the gap is accounted for.
+ *
+ * The 240px floor is what a country row needs to stay readable: flag, the
+ * longest country names (~160px) and the row padding. At 25% of the page that
+ * floor is reached around a 1032px viewport, so below 1040px the two stack
+ * instead (timeline under countries) rather than squeezing the list. The
+ * minmax() keeps the floor even if that sum ever changes.
+ */
 .columns {
 	display: grid;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	grid-template-columns: minmax(240px, 1fr) minmax(0, 3fr);
 	gap: 32px;
 	align-items: start;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1040px) {
 	.columns {
 		grid-template-columns: 1fr;
 	}
@@ -68,6 +77,9 @@
 	border: 1px solid var(--border);
 	border-radius: 10px;
 	overflow: hidden;
+	/* so a row can restack on its own width, not the viewport's — at 25% of
+	   the page this column gets narrow long before any media query fires */
+	container-type: inline-size;
 }
 
 .country {
@@ -93,7 +105,9 @@
 
 .country-name {
 	font-weight: 600;
-	overflow-wrap: anywhere;
+	/* break-word, not anywhere: `anywhere` lets the 1fr track shrink below the
+	   longest word, which chopped "United Kingdom" mid-word in a narrow column */
+	overflow-wrap: break-word;
 }
 
 .country-date {
@@ -101,6 +115,19 @@
 	color: var(--muted);
 	text-align: right;
 	font-variant-numeric: tabular-nums;
+}
+
+/* too narrow for name and date side by side — put the date under the name */
+@container (max-width: 270px) {
+	.country {
+		grid-template-columns: auto 1fr;
+		row-gap: 2px;
+	}
+
+	.country-date {
+		grid-column: 2;
+		text-align: left;
+	}
 }
 
 /* middle column: the map placeholder */
