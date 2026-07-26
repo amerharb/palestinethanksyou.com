@@ -50,9 +50,9 @@ export const NEWS: NewsItem[] = [
 	},
 	{
 		id: 'under-construction',
-		/* 1900 is a sentinel, not a real date: it keeps this notice pinned to the
+		/* 0000 is a sentinel, not a real date: it keeps this notice pinned to the
 		   bottom of the timeline however many real posts are added above it */
-		date: '1900',
+		date: '0000',
 		headline: '🚧 This section is under construction',
 		body: 'The timeline is not finished yet. Posts covering the recognitions in the list will be added here, each linking to its source.',
 	},

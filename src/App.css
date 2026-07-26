@@ -41,7 +41,9 @@
 	display: grid;
 	grid-template-columns: minmax(300px, 1fr) minmax(0, 2fr);
 	gap: 32px;
-	align-items: start;
+	/* stretch (the default) so the news column can fill the row height that the
+	   countries column sets — see .news-col / .news-inner below */
+	align-items: stretch;
 }
 
 @media (max-width: 990px) {
@@ -164,9 +166,33 @@
 	stroke-width: 1.5;
 }
 
-/* right column: timeline posts */
+/* right column: news posts */
+
+/*
+ * The news column is capped at the height of the countries column.
+ *
+ * CSS can't read a sibling's height, so instead: .news-inner is absolutely
+ * positioned, which takes it out of flow so the news column contributes
+ * nothing to the grid row's height. The row is therefore sized by the
+ * countries column alone, and .news-col stretches to it. .news-inner then
+ * fills that height, the heading stays put, and the list scrolls inside it
+ * once the posts would run past the bottom.
+ */
+.news-col {
+	position: relative;
+}
+
+.news-inner {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+}
 
 .news-list {
+	/* min-height:0 lets a flex child actually shrink so overflow can kick in */
+	min-height: 0;
+	overflow-y: auto;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -216,6 +242,22 @@
 	font-size: 0.82rem;
 	line-height: 1.5;
 	color: var(--muted);
+}
+
+/*
+ * Stacked: there is no side-by-side column to match, so put the news back in
+ * flow and let it run its natural length instead of scrolling. This block has
+ * to come *after* the .news-inner / .news-list rules above — a media query
+ * adds no specificity, so source order is what decides the winner.
+ */
+@media (max-width: 990px) {
+	.news-inner {
+		position: static;
+	}
+
+	.news-list {
+		overflow-y: visible;
+	}
 }
 
 /* footer */

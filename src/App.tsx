@@ -50,31 +50,39 @@ function App() {
 					</section>
 
 					<section className="col news-col">
-						<h2>Timeline</h2>
-						<ol className="news-list">
-							{news.map(n => (
-								<li key={n.id} className="news-item">
-									<div className="news-meta">
-										{/* a bare 'YYYY' sentinel isn't a valid datetime value, and isn't
-										    a real date worth exposing to machines — render it as plain text */}
-										<time dateTime={n.date.length > 4 ? n.date : undefined}>
-											{formatDate(n.date)}
-										</time>
-										{n.source && <span className="news-source">{n.source}</span>}
-									</div>
-									<h3 className="news-headline">
-										{n.url
-											? (
-												<a href={n.url} target="_blank" rel="noopener noreferrer">
-													{n.headline}
-												</a>
-											)
-											: n.headline}
-									</h3>
-									<p className="news-body">{n.body}</p>
-								</li>
-							))}
-						</ol>
+						{/*
+						  * This wrapper is taken out of flow (see App.css) so the news
+						  * column never drives the grid row height — the countries column
+						  * does. That is what caps the news at the countries' height, and
+						  * the list scrolls once it would grow past it.
+						  */}
+						<div className="news-inner">
+							<h2>News</h2>
+							<ol className="news-list">
+								{news.map(n => (
+									<li key={n.id} className="news-item">
+										<div className="news-meta">
+											{/* a bare 'YYYY' sentinel isn't a valid datetime value, and
+											    isn't a real date worth exposing to machines — plain text */}
+											<time dateTime={n.date.length > 4 ? n.date : undefined}>
+												{formatDate(n.date)}
+											</time>
+											{n.source && <span className="news-source">{n.source}</span>}
+										</div>
+										<h3 className="news-headline">
+											{n.url
+												? (
+													<a href={n.url} target="_blank" rel="noopener noreferrer">
+														{n.headline}
+													</a>
+												)
+												: n.headline}
+										</h3>
+										<p className="news-body">{n.body}</p>
+									</li>
+								))}
+							</ol>
+						</div>
 					</section>
 				</div>
 			</main>
