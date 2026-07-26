@@ -21,10 +21,10 @@ function App() {
 
 			<main className="layout">
 				<section className="col map-col">
-					<WorldMap/>
+					<WorldMap countries={countries} lang={lang}/>
 					<p className="col-note">
-						Map placeholder — simplified shapes, not real borders. The
-						interactive version will highlight each recognizing country.
+						States that recognize Palestine are filled in. Hover a country for
+						its name and, where it recognizes Palestine, the date.
 					</p>
 				</section>
 

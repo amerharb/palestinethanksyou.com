@@ -137,15 +137,19 @@
 	}
 }
 
-/* middle column: the map placeholder */
+/* middle column: the interactive map */
 
-/* capped so the 2:1 map doesn't grow absurdly tall on a wide screen */
+.map-wrap {
+	position: relative;
+	/* capped so the 2:1 map doesn't grow absurdly tall on a wide screen */
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
 .world-map {
 	display: block;
 	width: 100%;
-	max-width: 1000px;
 	height: auto;
-	margin: 0 auto;
 	border: 1px solid var(--border);
 	border-radius: 10px;
 	background-color: var(--map-sea);
@@ -155,15 +159,76 @@
 	text-align: center;
 }
 
-.world-map .graticule line {
-	stroke: var(--map-grid);
-	stroke-width: 1;
+/* placeholder while public/world.json is in flight, same footprint as the map */
+.map-skeleton {
+	max-width: 1000px;
+	margin: 0 auto;
+	aspect-ratio: 2 / 1;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background-color: var(--map-sea);
 }
 
-.world-map .landmasses path {
+.map-message {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 24px;
+	text-align: center;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	color: var(--muted);
+}
+
+.country-shape {
 	fill: var(--map-land);
 	stroke: var(--map-land-stroke);
-	stroke-width: 1.5;
+	/* non-scaling so hairlines stay hairlines as the svg scales up */
+	stroke-width: 0.4;
+	vector-effect: non-scaling-stroke;
+}
+
+/* a state that recognizes Palestine */
+.country-shape.recognized {
+	fill: var(--map-recognized);
+}
+
+.country-shape:hover {
+	fill: var(--map-hover);
+}
+
+.country-shape.recognized:hover {
+	fill: var(--map-recognized-hover);
+}
+
+/*
+ * Tooltip. Positioned from the cursor by inline left/top, then shifted clear of
+ * it here; pointer-events:none so it can never steal the hover from the map.
+ */
+.map-tooltip {
+	position: absolute;
+	transform: translate(12px, -140%);
+	pointer-events: none;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	padding: 5px 9px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background-color: var(--bg);
+	box-shadow: 0 4px 14px rgb(0 0 0 / 0.18);
+	white-space: nowrap;
+}
+
+.map-tooltip-name {
+	font-size: 0.82rem;
+	font-weight: 600;
+}
+
+.map-tooltip-date {
+	font-size: 0.72rem;
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
 }
 
 /* right column: news posts */
