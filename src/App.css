@@ -1,21 +1,374 @@
 .App {
+	max-width: 1500px;
+	margin: 0 auto;
+	padding: 24px 20px 40px;
+}
+
+/* header */
+
+.site-header {
 	text-align: center;
-	min-height: 100vh;
+	margin-bottom: 28px;
+}
+
+/*
+ * The map spans the full width, with the countries and timeline columns
+ * side by side underneath it. Those two stack in DOM order on narrow screens.
+ */
+.layout {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
+	gap: 32px;
 }
 
-.notice {
-	margin: 0;
+/*
+ * Countries 1/3 / timeline 2/3 — fr units so the gap is accounted for.
+ *
+ * The 300px floor is what a country row needs: flag, date, row padding, and
+ * enough room that the longest names ("Democratic Republic of the Congo",
+ * "Saint Vincent and the Grenadines") wrap to no more than two lines. At a
+ * third of the page that floor is reached around a 987px viewport, so below
+ * 990px the two stack instead (timeline under countries) — where the list
+ * gets the full width and stops wrapping altogether. The minmax() keeps the
+ * floor even if that sum ever changes.
+ */
+.columns {
+	display: grid;
+	grid-template-columns: minmax(300px, 1fr) minmax(0, 2fr);
+	gap: 32px;
+	/* stretch (the default) so the news column can fill the row height that the
+	   countries column sets — see .news-col / .news-inner below */
+	align-items: stretch;
+}
+
+@media (max-width: 990px) {
+	.columns {
+		grid-template-columns: 1fr;
+	}
+}
+
+.col {
+	min-width: 0;
+}
+
+.col h2 {
+	margin: 0 0 12px;
 	font-size: 1.1rem;
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	color: var(--muted);
 }
 
-.credit,
-.updated {
+/* small caption under a column */
+.col-note {
+	margin: 12px 0 0;
+	font-size: 0.78rem;
+	line-height: 1.45;
+	color: var(--muted);
+}
+
+/* thanks block, above the country list */
+
+.thanks {
+	margin-bottom: 16px;
+}
+
+/*
+ * Needs to out-specify the small uppercase `.col h2` label style used by the
+ * NEWS heading — two classes beats one class plus an element.
+ */
+.col .thanks-title {
+	margin: 0 0 6px;
+	font-size: 1.35rem;
+	font-weight: 700;
+	text-transform: none;
+	letter-spacing: normal;
+	color: var(--fg);
+}
+
+.thanks-text {
+	margin: 0;
+	font-size: 0.88rem;
+	line-height: 1.5;
+}
+
+/* left column: recognizing countries, newest first */
+
+.country-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	overflow: hidden;
+	/* so a row can restack on its own width, not the viewport's — at 25% of
+	   the page this column gets narrow long before any media query fires */
+	container-type: inline-size;
+}
+
+/* compact: the list runs to 159 rows, so every px of row height counts */
+.country {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 8px;
+	padding: 4px 10px;
+	font-size: 0.85rem;
+}
+
+.country + .country {
+	border-top: 1px solid var(--border);
+}
+
+.country:hover {
+	background-color: var(--surface-hover);
+}
+
+.country-flag {
+	font-size: 1.1rem;
+	line-height: 1.2;
+}
+
+.country-name {
+	font-weight: 600;
+	/* break-word, not anywhere: `anywhere` lets the 1fr track shrink below the
+	   longest word, which chopped "United Kingdom" mid-word in a narrow column */
+	overflow-wrap: break-word;
+}
+
+.country-date {
+	font-size: 0.72rem;
+	color: var(--muted);
+	text-align: right;
+	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
+}
+
+/* too narrow for name and date side by side — put the date under the name */
+@container (max-width: 230px) {
+	.country {
+		grid-template-columns: auto 1fr;
+		row-gap: 2px;
+	}
+
+	.country-date {
+		grid-column: 2;
+		text-align: left;
+	}
+}
+
+/* middle column: the interactive map */
+
+.map-wrap {
+	position: relative;
+	/* capped so the 2:1 map doesn't grow absurdly tall on a wide screen */
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.world-map {
+	display: block;
+	width: 100%;
+	height: auto;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background-color: var(--map-sea);
+}
+
+/*
+ * Placeholder while public/world.json is in flight. The ratio must match the
+ * viewBox in that file (currently 1000 x 444) or the map jumps when it lands —
+ * if the map is ever regenerated at a different height, update this too.
+ */
+.map-skeleton {
+	max-width: 1000px;
+	margin: 0 auto;
+	aspect-ratio: 1000 / 444;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	background-color: var(--map-sea);
+}
+
+.map-message {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 24px;
+	text-align: center;
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	color: var(--muted);
+}
+
+.country-shape {
+	fill: var(--map-land);
+	stroke: var(--map-land-stroke);
+	/* non-scaling so hairlines stay hairlines as the svg scales up */
+	stroke-width: 0.4;
+	vector-effect: non-scaling-stroke;
+}
+
+/* a state that recognizes Palestine */
+.country-shape.recognized {
+	fill: var(--map-recognized);
+}
+
+.country-shape:hover {
+	fill: var(--map-hover);
+}
+
+.country-shape.recognized:hover {
+	fill: var(--map-recognized-hover);
+}
+
+/*
+ * Tooltip. Positioned from the cursor by inline left/top, then shifted clear of
+ * it here; pointer-events:none so it can never steal the hover from the map.
+ */
+.map-tooltip {
+	position: absolute;
+	transform: translate(12px, -140%);
+	pointer-events: none;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	padding: 5px 9px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background-color: var(--bg);
+	box-shadow: 0 4px 14px rgb(0 0 0 / 0.18);
+	white-space: nowrap;
+}
+
+.map-tooltip-name {
+	font-size: 0.82rem;
+	font-weight: 600;
+}
+
+.map-tooltip-date {
+	font-size: 0.72rem;
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+
+/* right column: news posts */
+
+/*
+ * The news column is capped at the height of the countries column.
+ *
+ * CSS can't read a sibling's height, so instead: .news-inner is absolutely
+ * positioned, which takes it out of flow so the news column contributes
+ * nothing to the grid row's height. The row is therefore sized by the
+ * countries column alone, and .news-col stretches to it. .news-inner then
+ * fills that height, the heading stays put, and the list scrolls inside it
+ * once the posts would run past the bottom.
+ */
+.news-col {
+	position: relative;
+}
+
+.news-inner {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.news-list {
+	/* min-height:0 lets a flex child actually shrink so overflow can kick in */
+	min-height: 0;
+	overflow-y: auto;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.news-item {
+	padding-left: 12px;
+	border-left: 2px solid var(--border);
+}
+
+.news-meta {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.72rem;
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
+}
+
+/* publisher of the linked article */
+.news-source {
+	font-size: 0.62rem;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	padding: 1px 5px;
+	border: 1px solid var(--border);
+	border-radius: 4px;
+}
+
+.news-headline {
+	margin: 4px 0 4px;
+	font-size: 0.92rem;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+/* a linked headline stays in the text colour, underlining only on hover */
+.news-headline a {
+	color: inherit;
+}
+
+.news-body {
+	margin: 0;
+	font-size: 0.82rem;
+	line-height: 1.5;
+	color: var(--muted);
+}
+
+/*
+ * Stacked: there is no side-by-side column to match, so put the news back in
+ * flow and let it run its natural length instead of scrolling. This block has
+ * to come *after* the .news-inner / .news-list rules above — a media query
+ * adds no specificity, so source order is what decides the winner.
+ */
+@media (max-width: 990px) {
+	.news-inner {
+		position: static;
+	}
+
+	.news-list {
+		overflow-y: visible;
+	}
+}
+
+/* footer */
+
+.site-footer {
+	margin-top: 36px;
+	/* rule separating the footer from the columns above it */
+	border-top: 1px solid var(--border);
+	padding-top: 20px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+/* one line on a wide screen, wrapping naturally when there isn't room */
+.footer-note {
 	margin: 0;
 	font-size: 0.85rem;
+	line-height: 1.5;
 	color: var(--muted);
+}
+
+.updated {
+	margin: 0;
+	font-size: 0.72rem;
+	color: var(--muted);
+	font-variant-numeric: tabular-nums;
 }

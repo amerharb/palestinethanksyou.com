@@ -16,6 +16,14 @@
 	--active-bg: light-dark(lightsteelblue, #3a4d6b);
 	--muted: light-dark(#767676, #999999);
 	--link: light-dark(#4a6fa5, #8ab0e0);
+
+	/* map: sea, land, and the fill for states that recognize Palestine */
+	--map-sea: light-dark(#f4f7fa, #171d24);
+	--map-land: light-dark(#dfe5ec, #2b343d);
+	--map-land-stroke: light-dark(#ffffff, #171d24);
+	--map-hover: light-dark(#c6cfda, #3b4653);
+	--map-recognized: light-dark(#4a7c59, #4e8f63);
+	--map-recognized-hover: light-dark(#3c6749, #61a878);
 }
 
 :root[data-theme='light'] {
