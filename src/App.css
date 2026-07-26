@@ -67,6 +67,31 @@
 	color: var(--muted);
 }
 
+/* thanks block, above the country list */
+
+.thanks {
+	margin-bottom: 16px;
+}
+
+/*
+ * Needs to out-specify the small uppercase `.col h2` label style used by the
+ * NEWS heading — two classes beats one class plus an element.
+ */
+.col .thanks-title {
+	margin: 0 0 6px;
+	font-size: 1.35rem;
+	font-weight: 700;
+	text-transform: none;
+	letter-spacing: normal;
+	color: var(--fg);
+}
+
+.thanks-text {
+	margin: 0;
+	font-size: 0.88rem;
+	line-height: 1.5;
+}
+
 /* left column: recognizing countries, newest first */
 
 .country-list {
@@ -150,11 +175,15 @@
 	background-color: var(--map-sea);
 }
 
-/* placeholder while public/world.json is in flight, same footprint as the map */
+/*
+ * Placeholder while public/world.json is in flight. The ratio must match the
+ * viewBox in that file (currently 1000 x 444) or the map jumps when it lands —
+ * if the map is ever regenerated at a different height, update this too.
+ */
 .map-skeleton {
 	max-width: 1000px;
 	margin: 0 auto;
-	aspect-ratio: 2 / 1;
+	aspect-ratio: 1000 / 444;
 	border: 1px solid var(--border);
 	border-radius: 10px;
 	background-color: var(--map-sea);
