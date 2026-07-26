@@ -93,15 +93,22 @@ function App() {
 			</main>
 
 			<footer className="site-footer">
-				<p className="credit">
-					Inspired by 🇽🇰{' '}
+				{/* the link's tags sit flush against the text so JSX doesn't insert a
+				    space before the full stop that follows it */}
+				<p className="footer-note">
+					This is a{' '}
+					<a
+						href="https://amerharb.com"
+						target="_blank"
+						rel="noopener noreferrer"
+					>personal</a>{' '}
+					project, inspired by 🇽🇰{' '}
 					<a
 						href="https://www.kosovothanksyou.com"
 						target="_blank"
 						rel="noopener noreferrer"
-					>
-						kosovothanksyou.com
-					</a>
+					>kosovothanksyou.com</a>. It is not affiliated with any government or
+					political organization.
 				</p>
 				<p className="updated">Last update: {__APP_VERSION__}</p>
 			</footer>
