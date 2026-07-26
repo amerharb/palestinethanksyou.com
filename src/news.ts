@@ -208,7 +208,7 @@ export const NEWS: NewsItem[] = [
 		   bottom of the timeline however many real posts are added above it */
 		date: '0000',
 		headline: '🚧 This section is under construction',
-		body: 'The timeline is not finished yet. Posts covering the recognitions in the list will be added here, each linking to its source.',
+		body: 'The sources is not finished yet. Posts covering the recognitions in the list will be added here later.',
 	},
 ]
 
