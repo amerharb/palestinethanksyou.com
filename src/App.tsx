@@ -58,7 +58,7 @@ function App() {
 						  * the list scrolls once it would grow past it.
 						  */}
 						<div className="news-inner">
-							<h2>News</h2>
+							<h2>Sources</h2>
 							<ol className="news-list">
 								{news.map(n => (
 									<li key={n.id} className="news-item">
