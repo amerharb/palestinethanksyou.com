@@ -26,7 +26,13 @@ function App() {
 				{/* both columns sit below the map */}
 				<div className="columns">
 					<section className="col countries-col">
-						<h2>Countries</h2>
+						<div className="thanks">
+							<h2 className="thanks-title">Thank you 🙏</h2>
+							<p className="thanks-text">
+								We would like to thank the people of the following{' '}
+								{countries.length} for recognizing the State of Palestine. 🇵🇸
+							</p>
+						</div>
 						<ol className="country-list">
 							{countries.map(c => (
 								<li key={c.code} className="country">
