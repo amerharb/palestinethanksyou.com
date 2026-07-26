@@ -62,11 +62,15 @@ function App() {
 								{news.map(n => (
 									<li key={n.id} className="news-item">
 										<div className="news-meta">
-											{/* a bare 'YYYY' sentinel isn't a valid datetime value, and
-											    isn't a real date worth exposing to machines — plain text */}
-											<time dateTime={n.date.length > 4 ? n.date : undefined}>
-												{formatDate(n.date)}
-											</time>
+											{/*
+											  * A bare-year value (see the sentinel in src/news.ts) is a
+											  * sort key, not a date: it is not a valid datetime attribute
+											  * and rendering it shows the reader something meaningless
+											  * ('0'), so such posts show no date at all.
+											  */}
+											{n.date.length > 4 && (
+												<time dateTime={n.date}>{formatDate(n.date)}</time>
+											)}
 											{n.source && <span className="news-source">{n.source}</span>}
 										</div>
 										<h3 className="news-headline">
