@@ -169,6 +169,40 @@ export const NEWS: NewsItem[] = [
 		source: 'Caribbean News Global',
 	},
 	{
+		id: 'bb-2024-04-19',
+		date: '2024-04-19',
+		headline: 'Barbados recognizes the State of Palestine',
+		body: 'The first of four CARICOM members to recognize the State of Palestine in April and May 2024, followed by Jamaica, Trinidad and Tobago and the Bahamas.',
+		url: 'https://caribbeannewsglobal.com/after-13-years-caricom-aligns-in-unified-stand-for-palestine-and-peace/',
+		source: 'Caribbean News Global',
+	},
+	{
+		id: 'se-2014-10-30',
+		date: '2014-10-30',
+		headline: 'Sweden recognizes the State of Palestine',
+		body: 'The Swedish government announced its recognition of the State of Palestine together with an increase in aid to Palestine, describing it as a consequence of its support for a two-state solution.',
+		url: 'https://www.un.org/unispal/document/auto-insert-203405',
+		source: 'Swedish MFA via UNISPAL',
+	},
+	{
+		id: 'va-2013-02',
+		date: '2013-02',
+		headline: 'The Holy See recognizes the State of Palestine',
+		body: 'The date given here is when the Holy See began referring to the State of Palestine, after the UN granted Palestine non-member observer state status. The Vatican itself dates its recognition to the comprehensive agreement of June 2015, whose tenth anniversary it marked in June 2025 — so this entry is the least settled in the list.',
+		url: 'https://www.vaticannews.va/en/vatican-city/news/2025-06/palestine-holy-see-recognition-tenth-anniversary.html',
+		source: 'Vatican News',
+	},
+	{
+		id: 'un-doc-a78-846',
+		/* 0001 keeps this reference note just above the under-construction notice:
+		   it documents a source rather than reporting a dated event */
+		date: '2024-04-09',
+		headline: 'Question of Palestine Admission of new Members to the United Nations,	 UN document A/78/846',
+		body: 'For several states the only date available is the one in the list of recognitions transmitted to the UN Secretary-General in April 2024: Colombia, Guatemala, Haiti, Iceland, Saint Kitts and Nevis, Saint Lucia and Thailand. Each deserves its own source once one can be found.',
+		url: 'https://docs.un.org/en/A/78/846',
+		source: 'UN doc A/78/846',
+	},
+	{
 		id: 'under-construction',
 		/* 0000 is a sentinel, not a real date: it keeps this notice pinned to the
 		   bottom of the timeline however many real posts are added above it */
