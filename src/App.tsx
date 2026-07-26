@@ -55,10 +55,22 @@ function App() {
 							{news.map(n => (
 								<li key={n.id} className="news-item">
 									<div className="news-meta">
-										<time dateTime={n.date}>{formatDate(n.date)}</time>
-										{n.sample && <span className="news-sample">sample</span>}
+										{/* a bare 'YYYY' sentinel isn't a valid datetime value, and isn't
+										    a real date worth exposing to machines — render it as plain text */}
+										<time dateTime={n.date.length > 4 ? n.date : undefined}>
+											{formatDate(n.date)}
+										</time>
+										{n.source && <span className="news-source">{n.source}</span>}
 									</div>
-									<h3 className="news-headline">{n.headline}</h3>
+									<h3 className="news-headline">
+										{n.url
+											? (
+												<a href={n.url} target="_blank" rel="noopener noreferrer">
+													{n.headline}
+												</a>
+											)
+											: n.headline}
+									</h3>
 									<p className="news-body">{n.body}</p>
 								</li>
 							))}

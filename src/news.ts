@@ -1,58 +1,36 @@
 export type NewsItem = {
 	id: string
-	/* ISO date of the post */
+	/* ISO date of the event the post is about: 'YYYY-MM-DD', or a coarser
+	   'YYYY-MM' / 'YYYY' — shorter values still sort correctly as strings */
 	date: string
 	headline: string
 	body: string
-	/*
-	 * Placeholder copy, not real reporting. Rendered with a visible "sample"
-	 * tag so it can never be mistaken for a sourced post. Drop this flag (and
-	 * rewrite the text) as real, sourced entries replace them.
-	 */
-	sample?: boolean
+	/* source article — the headline links to it when set */
+	url?: string
+	/* publisher of that article, shown next to the date */
+	source?: string
 }
 
 /*
  * The timeline column. Sorted newest-first by the UI, like the country list.
- *
- * Everything here is placeholder text describing what the real posts will
- * cover — no invented recognitions, dates or quotes attributed to real states.
+ * Every post should carry a `url` to the source it is based on.
  */
 export const NEWS: NewsItem[] = [
 	{
-		id: 'sample-5',
-		date: '2026-07-24',
-		headline: 'Sample post — a new recognition',
-		body: 'Placeholder for a short post marking a country formally recognizing the State of Palestine, with a link to the official statement.',
-		sample: true,
+		id: 'under-construction',
+		/* 1900 is a sentinel, not a real date: it keeps this notice pinned to the
+		   bottom of the timeline however many real posts are added above it */
+		date: '1900',
+		headline: '🚧 This section is under construction',
+		body: 'The timeline is not finished yet. Posts covering the recognitions in the list will be added here, each linking to its source.',
 	},
 	{
-		id: 'sample-4',
-		date: '2026-07-11',
-		headline: 'Sample post — a longer entry, to check how the column wraps',
-		body: 'Placeholder copy sized to show a post running to several lines, so the spacing between the headline, the date and the body can be judged before the real text arrives. Replace with a sourced entry.',
-		sample: true,
-	},
-	{
-		id: 'sample-3',
-		date: '2026-06-30',
-		headline: 'Sample post — a statement of support',
-		body: 'Placeholder for a post quoting a government or parliament statement, credited to its source.',
-		sample: true,
-	},
-	{
-		id: 'sample-2',
-		date: '2026-06-15',
-		headline: 'Sample post — a milestone in the count',
-		body: 'Placeholder for a post noting the total number of recognizing states passing a round number.',
-		sample: true,
-	},
-	{
-		id: 'sample-1',
-		date: '2026-05-28',
-		headline: 'Sample post — an anniversary',
-		body: 'Placeholder for a post marking the anniversary of an earlier recognition.',
-		sample: true,
+		id: 'sm-2025-09-23',
+		date: '2025-09-23',
+		headline: 'San Marino recognizes the State of Palestine',
+		body: 'The State Congress approved a resolution recognizing Palestine as a sovereign and independent state within internationally recognized borders, in line with UN resolutions. Foreign Affairs Secretary Luca Beccari called it the unanimous will of San Marino\'s institutions, and went on to communicate the decision formally to the UN General Assembly\'s 80th session on 27 September.',
+		url: 'https://www.sanmarinortv.sm/news/politica-c2/san-marino-riconosce-ufficialmente-lo-stato-di-palestina-a280680',
+		source: 'San Marino RTV',
 	},
 ]
 

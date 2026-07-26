@@ -27,22 +27,24 @@
 }
 
 /*
- * Countries 25% / timeline 75% — fr units so the gap is accounted for.
+ * Countries 1/3 / timeline 2/3 — fr units so the gap is accounted for.
  *
- * The 240px floor is what a country row needs to stay readable: flag, the
- * longest country names (~160px) and the row padding. At 25% of the page that
- * floor is reached around a 1032px viewport, so below 1040px the two stack
- * instead (timeline under countries) rather than squeezing the list. The
- * minmax() keeps the floor even if that sum ever changes.
+ * The 300px floor is what a country row needs: flag, date, row padding, and
+ * enough room that the longest names ("Democratic Republic of the Congo",
+ * "Saint Vincent and the Grenadines") wrap to no more than two lines. At a
+ * third of the page that floor is reached around a 987px viewport, so below
+ * 990px the two stack instead (timeline under countries) — where the list
+ * gets the full width and stops wrapping altogether. The minmax() keeps the
+ * floor even if that sum ever changes.
  */
 .columns {
 	display: grid;
-	grid-template-columns: minmax(240px, 1fr) minmax(0, 3fr);
+	grid-template-columns: minmax(300px, 1fr) minmax(0, 2fr);
 	gap: 32px;
 	align-items: start;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 990px) {
 	.columns {
 		grid-template-columns: 1fr;
 	}
@@ -82,12 +84,14 @@
 	container-type: inline-size;
 }
 
+/* compact: the list runs to 159 rows, so every px of row height counts */
 .country {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	align-items: center;
-	gap: 10px;
-	padding: 10px 12px;
+	gap: 8px;
+	padding: 4px 10px;
+	font-size: 0.85rem;
 }
 
 .country + .country {
@@ -99,8 +103,8 @@
 }
 
 .country-flag {
-	font-size: 1.5rem;
-	line-height: 1;
+	font-size: 1.1rem;
+	line-height: 1.2;
 }
 
 .country-name {
@@ -111,14 +115,15 @@
 }
 
 .country-date {
-	font-size: 0.78rem;
+	font-size: 0.72rem;
 	color: var(--muted);
 	text-align: right;
 	font-variant-numeric: tabular-nums;
+	white-space: nowrap;
 }
 
 /* too narrow for name and date side by side — put the date under the name */
-@container (max-width: 270px) {
+@container (max-width: 230px) {
 	.country {
 		grid-template-columns: auto 1fr;
 		row-gap: 2px;
@@ -184,8 +189,8 @@
 	font-variant-numeric: tabular-nums;
 }
 
-/* marks placeholder copy — see the `sample` flag in src/news.ts */
-.news-sample {
+/* publisher of the linked article */
+.news-source {
 	font-size: 0.62rem;
 	text-transform: uppercase;
 	letter-spacing: 0.08em;
@@ -199,6 +204,11 @@
 	font-size: 0.92rem;
 	font-weight: 600;
 	line-height: 1.35;
+}
+
+/* a linked headline stays in the text colour, underlining only on hover */
+.news-headline a {
+	color: inherit;
 }
 
 .news-body {
