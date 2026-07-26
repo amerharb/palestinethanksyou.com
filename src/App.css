@@ -11,11 +11,6 @@
 	margin-bottom: 28px;
 }
 
-.notice {
-	margin: 8px 0 0;
-	font-size: 1.1rem;
-}
-
 /*
  * The map spans the full width, with the countries and timeline columns
  * side by side underneath it. Those two stack in DOM order on narrow screens.
@@ -153,10 +148,6 @@
 	border: 1px solid var(--border);
 	border-radius: 10px;
 	background-color: var(--map-sea);
-}
-
-.map-col .col-note {
-	text-align: center;
 }
 
 /* placeholder while public/world.json is in flight, same footprint as the map */

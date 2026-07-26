@@ -16,16 +16,11 @@ function App() {
 		<div className="App">
 			<header className="site-header">
 				<h1>🇵🇸 Palestine Thanks You</h1>
-				<p className="notice">🚧 This site is under construction. 🚧</p>
 			</header>
 
 			<main className="layout">
 				<section className="col map-col">
 					<WorldMap countries={countries} lang={lang}/>
-					<p className="col-note">
-						States that recognize Palestine are filled in. Hover a country for
-						its name and, where it recognizes Palestine, the date.
-					</p>
 				</section>
 
 				{/* both columns sit below the map */}
