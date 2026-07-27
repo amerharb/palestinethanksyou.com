@@ -197,7 +197,7 @@ export const NEWS: NewsItem[] = [
 		/* 0001 keeps this reference note just above the under-construction notice:
 		   it documents a source rather than reporting a dated event */
 		date: '2024-04-09',
-		headline: 'Question of Palestine Admission of new Members to the United Nations,	 UN document A/78/846',
+		headline: 'Question of Palestine: Admission of new Members to the United Nations — UN document A/78/846',
 		body: 'For several states the only date available is the one in the list of recognitions transmitted to the UN Secretary-General in April 2024: Colombia, Guatemala, Haiti, Iceland, Saint Kitts and Nevis, Saint Lucia and Thailand. Each deserves its own source once one can be found.',
 		url: 'https://docs.un.org/en/A/78/846',
 		source: 'UN doc A/78/846',
@@ -208,7 +208,7 @@ export const NEWS: NewsItem[] = [
 		   bottom of the timeline however many real posts are added above it */
 		date: '0000',
 		headline: '🚧 This section is under construction',
-		body: 'The sources is not finished yet. Posts covering the recognitions in the list will be added here later.',
+		body: 'This section is not finished yet. Sources for the remaining recognitions in the list will be added here.',
 	},
 ]
 
