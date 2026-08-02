@@ -1,16 +1,25 @@
 import './App.css'
 import { Analytics } from '@vercel/analytics/react'
 import WorldMap from './WorldMap'
-import { COUNTRIES, byNewest as countriesByNewest } from './countries'
+import {
+	COUNTRIES,
+	byNewest as countriesByNewest,
+	recognitionRanks,
+	totalPopulation,
+	WORLD_POPULATION,
+} from './countries'
 import { NEWS, byNewest as newsByNewest } from './news'
-import { formatDate } from './format'
+import { formatBillions, formatDate } from './format'
 import { DEFAULT_LANG } from './lang'
 
 function App() {
 	/* becomes state once there is a language picker */
 	const lang = DEFAULT_LANG
 	const countries = countriesByNewest(COUNTRIES, lang)
+	const rank = recognitionRanks(COUNTRIES)
 	const news = newsByNewest(NEWS)
+	const recognizingPopulation = totalPopulation(COUNTRIES)
+	const sharePercent = (recognizingPopulation / WORLD_POPULATION) * 100
 
 	return (
 		<div className="App">
@@ -33,10 +42,31 @@ function App() {
 								{countries.length} for recognizing the State of Palestine. 🇵🇸
 							</p>
 						</div>
+
+						{/* share of humanity living in states that recognize Palestine */}
+						<div className="share">
+							{/*
+							  * The bar is decoration: the sentence under it already states the
+							  * figures, so giving it a progressbar or meter role would only
+							  * announce the same thing twice. aria-hidden keeps it visual.
+							  */}
+							<div className="share-bar" aria-hidden="true">
+								<div className="share-fill" style={{ width: `${sharePercent}%` }}/>
+							</div>
+							<p className="share-note">
+								{formatBillions(recognizingPopulation)} out of{' '}
+								{formatBillions(WORLD_POPULATION)} people live in a state that
+								recognizes Palestine.
+							</p>
+						</div>
+
 						<ol className="country-list">
 							{countries.map(c => (
 								<li key={c.code} className="country">
 									<span className="country-flag" aria-hidden="true">{c.flag}</span>
+									{/* #1 is the earliest recognition, at the bottom of the list;
+									    same-date states share a rank (see recognitionRanks) */}
+									<span className="country-rank">#{rank.get(c.code)}</span>
 									<span className="country-name">{c.name[lang]}</span>
 									<time className="country-date" dateTime={c.recognized}>
 										{formatDate(c.recognized)}

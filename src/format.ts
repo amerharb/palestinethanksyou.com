@@ -1,3 +1,9 @@
+/* 7311281763 -> '7.3 B'. Only used for the population totals, which are always
+   in the billions. */
+export function formatBillions(n: number): string {
+	return `${(n / 1e9).toFixed(1)} B`
+}
+
 const MONTHS = [
 	'January', 'February', 'March', 'April', 'May', 'June',
 	'July', 'August', 'September', 'October', 'November', 'December',

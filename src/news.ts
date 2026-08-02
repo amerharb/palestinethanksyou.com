@@ -52,7 +52,7 @@ export const NEWS: NewsItem[] = [
 		id: 'mt-2025-09-22',
 		date: '2025-09-22',
 		headline: 'Malta recognizes the State of Palestine',
-		body: 'Prime Minister Robert Abela announced the recognition at the UN conference on the two-state solution in New York, describing it as a concrete step towards a peaceful settlement between two states.',
+		body: 'Prime Minister Robert Abela announced the recognition at the UN conference on the two-state solution in New York, describing it as a concrete step towards a peaceful settlement between two states. The date in the country list is 16 November 1988, which is what the UN annex of recognition dates records for Malta — a date Malta\'s own government is reported to consider incorrect. The two readings have not been reconciled here.',
 		url: 'https://www.independent.com.mt/articles/2025-09-22/local-news/Malta-officially-recognises-the-State-of-Palestine-6736273350',
 		source: 'The Malta Independent',
 	},
@@ -100,7 +100,7 @@ export const NEWS: NewsItem[] = [
 		id: 'mx-2025-02-05',
 		date: '2025-02-05',
 		headline: 'Mexico recognizes the State of Palestine',
-		body: 'President Claudia Sheinbaum confirmed that Mexico recognizes both Palestine and Israel as states, and called for a peaceful settlement of the conflict. This restated a long-standing position rather than announcing a first recognition, and the date is less firmly documented than the others in this list.',
+		body: 'President Claudia Sheinbaum confirmed that Mexico recognizes both Palestine and Israel as states, and called for a peaceful settlement of the conflict — a restatement of a long-standing position rather than a first recognition. The date in the country list is 2 June 2023, which is what the UN annex of recognition dates records for Mexico.',
 		url: 'https://cnnespanol.cnn.com/2025/02/05/mexico/video/sheinbaum-palestina-israel-estados-conflicto-orix-perspectivas-mexico-tv',
 		source: 'CNN en Español',
 	},
@@ -185,19 +185,27 @@ export const NEWS: NewsItem[] = [
 		source: 'Swedish MFA via UNISPAL',
 	},
 	{
-		id: 'va-2013-02',
-		date: '2013-02',
+		id: 'va-2015-06-26',
+		date: '2015-06-26',
 		headline: 'The Holy See recognizes the State of Palestine',
-		body: 'The date given here is when the Holy See began referring to the State of Palestine, after the UN granted Palestine non-member observer state status. The Vatican itself dates its recognition to the comprehensive agreement of June 2015, whose tenth anniversary it marked in June 2025 — so this entry is the least settled in the list.',
+		body: 'The comprehensive agreement between the Holy See and the State of Palestine, whose tenth anniversary the Vatican marked in June 2025. The UN annex of recognition dates gives the same day. An earlier date of February 2013 is sometimes cited, when the Holy See began using the name State of Palestine after the UN granted Palestine non-member observer state status.',
 		url: 'https://www.vaticannews.va/en/vatican-city/news/2025-06/palestine-holy-see-recognition-tenth-anniversary.html',
 		source: 'Vatican News',
+	},
+	{
+		id: 'declaration-1988-11-15',
+		date: '1988-11-15',
+		headline: 'Thirteen states recognize the State of Palestine on the day it is declared',
+		body: 'Yasser Arafat proclaimed the State of Palestine in Algiers on 15 November 1988, in a declaration circulated at the UN as document A/43/827–S/20278. The annex to the linked document lists the recognition date of every UN member state, and gives that same day for thirteen of them: Algeria, Bahrain, Indonesia, Iraq, Kuwait, Libya, Malaysia, Mauritania, Morocco, Somalia, Tunisia, Türkiye and Yemen. The Sahrawi Republic is shown under that date in the list on this page too, but it is not in the annex, which covers UN member states only.',
+		url: 'https://docs.un.org/en/A/78/846',
+		source: 'UN doc A/78/846',
 	},
 	{
 		id: 'un-doc-a78-846',
 		/* 0001 keeps this reference note just above the under-construction notice:
 		   it documents a source rather than reporting a dated event */
 		date: '2024-04-09',
-		headline: 'Question of Palestine Admission of new Members to the United Nations,	 UN document A/78/846',
+		headline: 'Question of Palestine: Admission of new Members to the United Nations — UN document A/78/846',
 		body: 'For several states the only date available is the one in the list of recognitions transmitted to the UN Secretary-General in April 2024: Colombia, Guatemala, Haiti, Iceland, Saint Kitts and Nevis, Saint Lucia and Thailand. Each deserves its own source once one can be found.',
 		url: 'https://docs.un.org/en/A/78/846',
 		source: 'UN doc A/78/846',
@@ -208,7 +216,7 @@ export const NEWS: NewsItem[] = [
 		   bottom of the timeline however many real posts are added above it */
 		date: '0000',
 		headline: '🚧 This section is under construction',
-		body: 'The sources is not finished yet. Posts covering the recognitions in the list will be added here later.',
+		body: 'This section is not finished yet. Sources for the remaining recognitions in the list will be added here.',
 	},
 ]
 

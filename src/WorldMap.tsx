@@ -18,7 +18,7 @@ import { formatDate } from './format'
 
 type Shape = {
 	/* ISO 3166-1 alpha-2, lowercase. Absent for territories without one
-	   (Kosovo, Somaliland, N. Cyprus …), which are drawn but not interactive. */
+	   (Kosovo, N. Cyprus …), which are drawn but not interactive. */
 	c?: string
 	/* name from the atlas, used only when the country isn't in our own data */
 	n: string
@@ -89,7 +89,11 @@ function WorldMap({ countries, lang }: Props) {
 						<path
 							key={s.c ?? `x${i}`}
 							d={s.d}
-							className={country ? 'country-shape recognized' : 'country-shape'}
+							className={
+								s.c === 'ps' ? 'country-shape palestine'
+									: country ? 'country-shape recognized'
+										: 'country-shape'
+							}
 							onMouseEnter={e => onEnter(s, e)}
 							onMouseMove={e => onEnter(s, e)}
 							onMouseLeave={() => setHovered(null)}
