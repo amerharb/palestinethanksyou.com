@@ -45,19 +45,18 @@ function App() {
 
 						{/* share of humanity living in states that recognize Palestine */}
 						<div className="share">
-							<div
-								className="share-bar"
-								role="progressbar"
-								aria-valuenow={Math.round(sharePercent)}
-								aria-valuemin={0}
-								aria-valuemax={100}
-								aria-label="Share of the world's population living in states that recognize Palestine"
-							>
+							{/*
+							  * The bar is decoration: the sentence under it already states the
+							  * figures, so giving it a progressbar or meter role would only
+							  * announce the same thing twice. aria-hidden keeps it visual.
+							  */}
+							<div className="share-bar" aria-hidden="true">
 								<div className="share-fill" style={{ width: `${sharePercent}%` }}/>
 							</div>
 							<p className="share-note">
 								{formatBillions(recognizingPopulation)} out of{' '}
-								{formatBillions(WORLD_POPULATION)} people
+								{formatBillions(WORLD_POPULATION)} people live in a state that
+								recognizes Palestine.
 							</p>
 						</div>
 

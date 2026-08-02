@@ -257,7 +257,8 @@ export function totalPopulation(list: Country[]): number {
  * always agree with the order the rows are displayed in.
  */
 export function recognitionRanks(list: Country[]): Map<string, number> {
-	const ascending = list.map(c => sortKey(c.recognized)).sort()
+	/* same comparison byNewest uses, so ranks can't disagree with row order */
+	const ascending = list.map(c => sortKey(c.recognized)).sort((a, b) => a.localeCompare(b))
 	const rankOfKey = new Map<string, number>()
 	ascending.forEach((key, i) => {
 		if (!rankOfKey.has(key)) rankOfKey.set(key, i + 1)
