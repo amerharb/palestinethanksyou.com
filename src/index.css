@@ -34,10 +34,28 @@
 	color-scheme: dark;
 }
 
+/*
+ * Flag glyphs, from the same font the sister projects use.
+ *
+ * Windows' Segoe UI Emoji draws regional-indicator pairs as two-letter codes
+ * rather than flags, so 🇵🇸 shows up as "PS" and the country list becomes a
+ * column of letter boxes. This font supplies the flags themselves.
+ *
+ * unicode-range limits it to the regional indicators, which means it can sit at
+ * the front of the body stack without touching any other text, and the browser
+ * only downloads the 94 kB when a flag is actually on the page.
+ */
+@font-face {
+	font-family: 'flags';
+	src: url('/flags.woff2') format('woff2');
+	font-display: swap;
+	unicode-range: U+1F1E6-1F1FF;
+}
+
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+	font-family: 'flags', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+	'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 	sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

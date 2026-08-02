@@ -2,8 +2,19 @@
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
-## [2026.07.27] 2026-07-27
+## [2026.08.02] 2026-08-02
 ### Added
+- Draw the flags with the `flags` webfont the sister projects already use
+  (`public/flags.woff2`, 94 kB), instead of relying on the system emoji font.
+  Windows' Segoe UI Emoji renders regional-indicator pairs as two-letter codes
+  rather than flags, so 🇵🇸 appeared as "PS" and the country list became a
+  column of letter boxes there. The `@font-face` carries
+  `unicode-range: U+1F1E6-1F1FF`, so the family can sit at the front of the body
+  stack and cover every flag on the page — the title, the thanks line, all 159
+  country rows and the 🇽🇰 credit in the footer — without touching any other
+  text, and the file is only fetched when a flag is actually shown. Verified
+  that the font covers all 159 flags in the list plus 🇽🇰, and that a line of
+  Latin text measures identically with and without it
 - Add a source for the states that recognized Palestine on the day it was
   declared, 15 November 1988. The evidence is the annex to
   [A/78/846](https://docs.un.org/en/A/78/846), which lists a recognition date
@@ -12,6 +23,24 @@
   Somalia, Tunisia, Türkiye and Yemen. The country list also shows the Sahrawi
   Republic under that date; the entry says so, and notes that the annex covers
   member states only, so it is not evidence for that one
+
+### Changed
+- Correct eight recognition dates against the annex to
+  [A/78/846](https://docs.un.org/en/A/78/846), which lists a date for all 140
+  UN member states that had recognized Palestine by April 2024 and is now the
+  authority for this list: Malta 2025-09-22 → 1988-11-16, Mexico 2025-02-05 →
+  2023-06-02, the Holy See 2013-02 → 2015-06-26, Brazil 2010-12-01 →
+  2011-12-03, Paraguay 2005-03-25 → 2011-01-29, Papua New Guinea 1994-10-04 →
+  1995-01-13, Ecuador 2010-12-24 → 2010-12-27 and Uruguay 2011-03-15 →
+  2011-03-16. Every other date the annex covers now agrees with it. Two of the
+  changes are contested and the sources column says so: Malta's own government
+  is reported to consider the annex date wrong, and it conflicts with Malta's
+  own announcement in September 2025, which keeps its own entry; Mexico's 2023
+  date replaces a February 2025 statement that only restated a standing
+  position
+- Keep Iran at 1989-02-04 against the annex, which gives 4 February 1988 —
+  nine months before the declaration it would be recognizing, so the annex is
+  wrong on that row
 
 ### Fixed
 - Remove a literal tab character from the middle of the A/78/846 entry's
