@@ -4,6 +4,21 @@
 
 ## [2026.08.02] 2026-08-02
 ### Added
+- Number each country by its order of recognition, in a column between the flag
+  and the name, #1 being the earliest — so the list counts up from the bottom.
+  It is a competition ranking: states that recognized on the same date share a
+  number and the next one skips past the whole tie, so the fourteen states that
+  recognized on 15 November 1988 all hold #1 and the next is #15. Ranks are
+  computed from the same sort key the list is ordered by, so the numbers cannot
+  drift out of step with the rows
+- Record each country's population, for use later — nothing displays it yet.
+  157 come from the World Bank's SP.POP.TOTL indicator, all of them 2025, matched
+  to the list by ISO code rather than transcribed. The World Bank covers member
+  economies, so the two non-members are estimated separately and are rougher:
+  the Holy See at 882 (2024 resident estimate including non-citizens) and the
+  Sahrawi Republic at approximately 200,000, a figure that is genuinely disputed
+  and split between the territory and the refugee camps in Algeria. The field is
+  required, so a country cannot be added without one
 - Draw the flags with the `flags` webfont the sister projects already use
   (`public/flags.woff2`, 94 kB), instead of relying on the system emoji font.
   Windows' Segoe UI Emoji renders regional-indicator pairs as two-letter codes
