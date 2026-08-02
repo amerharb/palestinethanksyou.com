@@ -208,3 +208,27 @@ export function byNewest(list: Country[], lang: Lang): Country[] {
 		sortKey(b.recognized).localeCompare(sortKey(a.recognized))
 		|| a.name[lang].localeCompare(b.name[lang], lang))
 }
+
+/*
+ * Rank each state by its date of recognition, #1 being the earliest. Returns a
+ * lookup keyed by ISO code — the ranking itself has nothing to do with the
+ * code, that is only how the caller finds a country's rank.
+ *
+ * Competition ranking: states that recognized on the same date share a rank,
+ * and the next rank skips past the whole tie — so with two states tied first
+ * the next is #3, not #2. Fourteen states share 15 November 1988, the day
+ * Palestine was declared, so #1 is held fourteen times and the next is #15.
+ *
+ * A rank is one more than the number of states that recognized strictly
+ * earlier, which falls out of taking the first index of each key in the
+ * ascending list. Keys are the same ones byNewest sorts on, so the numbers
+ * always agree with the order the rows are displayed in.
+ */
+export function recognitionRanks(list: Country[]): Map<string, number> {
+	const ascending = list.map(c => sortKey(c.recognized)).sort()
+	const rankOfKey = new Map<string, number>()
+	ascending.forEach((key, i) => {
+		if (!rankOfKey.has(key)) rankOfKey.set(key, i + 1)
+	})
+	return new Map(list.map(c => [c.code, rankOfKey.get(sortKey(c.recognized)) as number]))
+}
