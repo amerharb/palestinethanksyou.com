@@ -228,6 +228,20 @@ export function byNewest(list: Country[], lang: Lang): Country[] {
 }
 
 /*
+ * World population: the World Bank's SP.POP.TOTL for the World aggregate in
+ * 2025 — the same indicator and year as the per-country figures, so the share
+ * of humanity below is a like-for-like comparison rather than two sources
+ * divided by each other.
+ */
+export const WORLD_POPULATION = 8_215_424_893
+
+/* Combined population of the listed states. Summed, not stored, so it stays
+   right as countries are added. */
+export function totalPopulation(list: Country[]): number {
+	return list.reduce((sum, c) => sum + c.population, 0)
+}
+
+/*
  * Rank each state by its date of recognition, #1 being the earliest. Returns a
  * lookup keyed by ISO code — the ranking itself has nothing to do with the
  * code, that is only how the caller finds a country's rank.

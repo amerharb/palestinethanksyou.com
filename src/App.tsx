@@ -1,9 +1,15 @@
 import './App.css'
 import { Analytics } from '@vercel/analytics/react'
 import WorldMap from './WorldMap'
-import { COUNTRIES, byNewest as countriesByNewest, recognitionRanks } from './countries'
+import {
+	COUNTRIES,
+	byNewest as countriesByNewest,
+	recognitionRanks,
+	totalPopulation,
+	WORLD_POPULATION,
+} from './countries'
 import { NEWS, byNewest as newsByNewest } from './news'
-import { formatDate } from './format'
+import { formatBillions, formatDate } from './format'
 import { DEFAULT_LANG } from './lang'
 
 function App() {
@@ -12,6 +18,8 @@ function App() {
 	const countries = countriesByNewest(COUNTRIES, lang)
 	const rank = recognitionRanks(COUNTRIES)
 	const news = newsByNewest(NEWS)
+	const recognizingPopulation = totalPopulation(COUNTRIES)
+	const sharePercent = (recognizingPopulation / WORLD_POPULATION) * 100
 
 	return (
 		<div className="App">
@@ -34,6 +42,25 @@ function App() {
 								{countries.length} for recognizing the State of Palestine. 🇵🇸
 							</p>
 						</div>
+
+						{/* share of humanity living in states that recognize Palestine */}
+						<div className="share">
+							<div
+								className="share-bar"
+								role="progressbar"
+								aria-valuenow={Math.round(sharePercent)}
+								aria-valuemin={0}
+								aria-valuemax={100}
+								aria-label="Share of the world's population living in states that recognize Palestine"
+							>
+								<div className="share-fill" style={{ width: `${sharePercent}%` }}/>
+							</div>
+							<p className="share-note">
+								{formatBillions(recognizingPopulation)} out of{' '}
+								{formatBillions(WORLD_POPULATION)} people
+							</p>
+						</div>
+
 						<ol className="country-list">
 							{countries.map(c => (
 								<li key={c.code} className="country">
