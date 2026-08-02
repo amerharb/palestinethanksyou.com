@@ -24,6 +24,9 @@
 	--map-hover: light-dark(#c6cfda, #3b4653);
 	--map-recognized: light-dark(#4a7c59, #4e8f63);
 	--map-recognized-hover: light-dark(#3c6749, #61a878);
+	/* Palestine itself, in the red of its flag */
+	--map-palestine: light-dark(#ce1126, #d93b4c);
+	--map-palestine-hover: light-dark(#a50e1e, #e85c6a);
 }
 
 :root[data-theme='light'] {

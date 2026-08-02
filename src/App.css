@@ -226,6 +226,15 @@
 	fill: var(--map-recognized);
 }
 
+/* Palestine itself — the subject of the map, not one of the recognizers */
+.country-shape.palestine {
+	fill: var(--map-palestine);
+}
+
+.country-shape.palestine:hover {
+	fill: var(--map-palestine-hover);
+}
+
 .country-shape:hover {
 	fill: var(--map-hover);
 }
