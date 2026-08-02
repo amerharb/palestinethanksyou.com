@@ -43,8 +43,8 @@ export type Country = {
  * Population figures come from a second source: the World Bank's SP.POP.TOTL
  * indicator, taking each country's most recent value, which is 2025 for all
  * 157 it covers. The Holy See and the Sahrawi Republic are not World Bank
- * economies and are estimated separately — see the type. Nothing displays
- * them yet.
+ * economies and are estimated separately — see the type. Their sum drives the
+ * share bar under the thanks text (see totalPopulation and WORLD_POPULATION).
  *
  * Listed newest-first then A–Z, but order here doesn't matter: the UI sorts
  * (see byNewest).

@@ -11,7 +11,7 @@
   recognized on 15 November 1988 all hold #1 and the next is #15. Ranks are
   computed from the same sort key the list is ordered by, so the numbers cannot
   drift out of step with the rows
-- Record each country's population, for use later — nothing displays it yet.
+- Record each country's population, which the share bar below is summed from.
   157 come from the World Bank's SP.POP.TOTL indicator, all of them 2025, matched
   to the list by ISO code rather than transcribed. The World Bank covers member
   economies, so the two non-members are estimated separately and are rougher:
@@ -19,6 +19,21 @@
   Sahrawi Republic at approximately 200,000, a figure that is genuinely disputed
   and split between the territory and the refugee camps in Algeria. The field is
   required, so a country cannot be added without one
+- Show what share of humanity those states account for: a bar under the thanks
+  text, the width of the column so it lines up with the text above and the
+  country list below, filled in the same green the map paints recognizing
+  states with and tracked in the same grey it paints the rest of the land.
+  Under it, "7.3 B out of 8.2 B people live in a state that recognizes
+  Palestine" — 89%. The total is summed from the country data rather than
+  stored, so it follows the list; the world figure is the World Bank's World
+  aggregate for 2025, the same indicator and year as the per-country numbers,
+  so the two sides of the ratio are comparable. The bar itself is `aria-hidden`
+  decoration, because the sentence under it already carries the figures and
+  marking it up as a progressbar or meter would announce them twice
+- Fill Palestine itself red on the map, in `#ce1126` from its flag — the same
+  red as the site's favicon — so the subject of the map is distinct from the
+  states that recognize it. It is deliberately not counted among them, so the
+  green total stays 159
 - Draw the flags with the `flags` webfont the sister projects already use
   (`public/flags.woff2`, 94 kB), instead of relying on the system emoji font.
   Windows' Segoe UI Emoji renders regional-indicator pairs as two-letter codes
@@ -40,6 +55,10 @@
   member states only, so it is not evidence for that one
 
 ### Changed
+- Sort the ranking keys with the same `localeCompare` comparison `byNewest`
+  uses, rather than a bare `.sort()`. Both produce the same order for these
+  fixed-width ISO dates, but the two code paths were comparing identical data
+  two different ways with nothing keeping them in step
 - Correct eight recognition dates against the annex to
   [A/78/846](https://docs.un.org/en/A/78/846), which lists a date for all 140
   UN member states that had recognized Palestine by April 2024 and is now the
