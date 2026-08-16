@@ -1,7 +1,8 @@
 /*
  * Color theming. Colors resolve via CSS `light-dark()`, driven by `color-scheme`.
- * Default `color-scheme: light dark` follows the OS; a theme toggle can override it
- * by setting `data-theme` on <html> (see the init script in index.html).
+ * `color-scheme: light dark` follows the OS and needs no JavaScript. There is no
+ * in-page theme toggle; add one by setting `data-theme` on <html> and giving it
+ * a `color-scheme` override here.
  */
 :root {
 	color-scheme: light dark;
@@ -27,14 +28,6 @@
 	/* Palestine itself, in the red of its flag */
 	--map-palestine: light-dark(#ce1126, #d93b4c);
 	--map-palestine-hover: light-dark(#a50e1e, #e85c6a);
-}
-
-:root[data-theme='light'] {
-	color-scheme: light;
-}
-
-:root[data-theme='dark'] {
-	color-scheme: dark;
 }
 
 /*

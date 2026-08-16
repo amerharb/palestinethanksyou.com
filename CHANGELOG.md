@@ -2,6 +2,53 @@
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
+## [2026.08.16] 2026-08-16
+### Added
+- Add share links between the thanks text and the population bar: Mastodon,
+  Bluesky, X, Facebook, LinkedIn, Reddit, Telegram, WhatsApp and copy-link, as a
+  row of logos behind a share glyph rather than words. Most have a single share
+  endpoint and are plain links. Two are not:
+  Mastodon has no central host, since a post is composed on the server the
+  reader has an account on, so its icon opens a field asking which one and
+  remembers it in `localStorage`; and copy-link touches no third party at all,
+  writing the URL to the clipboard and showing a tick for two seconds. Both are
+  `<button>`s among the links, because they open a form or act in place rather
+  than navigating and a link without an href cannot be reached by keyboard —
+  they are styled to match. The Mastodon field accepts `mastodon.social`,
+  `@me@mastodon.social` or a full URL, and stays disabled until the input looks
+  like a host, so a typo cannot open a broken window. The count in the post
+  comes from the country data, so it cannot drift from the list. Facebook and
+  LinkedIn ignore any text passed to them and build their card only from the
+  og: tags. Brand logos are the official marks from simple-icons (CC0); the
+  share, copy and tick glyphs are drawn here
+- Describe the site for link previews and search: a real
+  `<meta name="description">` in place of one that just repeated the title, plus
+  `og:` and `twitter:` tags and a canonical URL. These are what Mastodon, Slack
+  and WhatsApp build their preview card from, so they are part of the share
+  feature rather than separate from it, and a 1200x630 `og:image`
+  (`public/og.png`) so the card carries the map rather than being text only.
+  The picture is generated from `public/world.json` and `src/countries.ts`, so
+  it matches what the site shows — but the count is baked into it, so it needs
+  regenerating whenever a state is added
+
+- Add a README covering how to run it, where the data comes from and which two
+  dates deliberately depart from the UN annex, how the map geometry was made and
+  why it is 50m rather than 110m, and that the link-preview image has the count
+  baked in
+### Changed
+- Adjust the border of MA and EH
+- Fix Grammar
+- Shorten the web app manifest's `short_name` to 🇵🇸🙏, so it is not truncated
+  when the site is added to a home screen
+
+
+### Removed
+- Remove the theme machinery, which never did anything: an inline script in
+  `index.html` read a `theme` key out of `localStorage` on every page load, but
+  nothing ever wrote that key, so the `:root[data-theme=…]` rules it would have
+  triggered were unreachable. Light and dark still follow the OS through
+  `color-scheme: light dark`, which needs no JavaScript
+
 ## [2026.08.02] 2026-08-02
 ### Added
 - Number each country by its order of recognition, in a column between the flag
