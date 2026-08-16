@@ -39,7 +39,7 @@ function App() {
 							<h2 className="thanks-title">Thank you 🙏</h2>
 							<p className="thanks-text">
 								We would like to thank the people of the following{' '}
-								{countries.length} for recognizing the State of Palestine. 🇵🇸
+								{countries.length} states for recognizing the State of Palestine. 🇵🇸
 							</p>
 						</div>
 

@@ -3,6 +3,14 @@
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
 ## [2026.08.16] 2026-08-16
+### Added
+- Describe the site for link previews and search: a real
+  `<meta name="description">` in place of one that just repeated the title, plus
+  `og:` and `twitter:` tags and a canonical URL. These are what Mastodon, Slack
+  and WhatsApp build their preview card from, so they are part of the share
+  feature rather than separate from it. There is no `og:image` yet, so the card
+  is text-only
+
 ### Changed
 - Adjust the border of MA and EH
 

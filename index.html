@@ -8,14 +8,35 @@
 	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#121212"/>
 	<meta
 		name="description"
-		content="Palestine Thanks You"
+		content="The states that recognize the State of Palestine, when each of them did, and the source for every date — on an interactive world map."
 	/>
+	<link rel="canonical" href="https://palestinethanksyou.com/"/>
 	<link rel="manifest" href="/manifest.json"/>
 	<title>Palestine Thanks You</title>
+
+	<!--
+		Link previews. Mastodon, Slack, WhatsApp and the rest build their card
+		from these, so they are what a shared link looks like. Kept in sync with
+		the description above by hand — there is no build step templating them.
+		Add og:image (1200x630) to get a picture in the card instead of text only.
+	-->
+	<meta property="og:type" content="website"/>
+	<meta property="og:site_name" content="Palestine Thanks You"/>
+	<meta property="og:url" content="https://palestinethanksyou.com/"/>
+	<meta property="og:title" content="Palestine Thanks You"/>
+	<meta
+		property="og:description"
+		content="The states that recognize the State of Palestine, when each of them did, and the source for every date — on an interactive world map."
+	/>
+	<meta property="og:locale" content="en"/>
+	<meta name="twitter:card" content="summary"/>
+	<meta name="twitter:title" content="Palestine Thanks You"/>
+	<meta
+		name="twitter:description"
+		content="The states that recognize the State of Palestine, when each of them did, and the source for every date — on an interactive world map."
+	/>
 </head>
 <body>
-<!-- Apply the saved theme before first paint to avoid a flash of the wrong colors. -->
-<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t)}}catch(e){}})()</script>
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 <script type="module" src="/src/index.tsx"></script>
