@@ -2,6 +2,10 @@
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
+## [2026.08.16] 2026-08-16
+### Changed
+- Adjust the border of MA and EH
+
 ## [2026.08.02] 2026-08-02
 ### Added
 - Number each country by its order of recognition, in a column between the flag
