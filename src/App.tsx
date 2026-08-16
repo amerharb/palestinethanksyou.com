@@ -1,6 +1,7 @@
 import './App.css'
 import { Analytics } from '@vercel/analytics/react'
 import WorldMap from './WorldMap'
+import ShareLinks from './ShareLinks'
 import {
 	COUNTRIES,
 	byNewest as countriesByNewest,
@@ -42,6 +43,10 @@ function App() {
 								{countries.length} states for recognizing the State of Palestine. 🇵🇸
 							</p>
 						</div>
+
+						<ShareLinks
+							text={`${countries.length} states recognize the State of Palestine 🇵🇸`}
+						/>
 
 						{/* share of humanity living in states that recognize Palestine */}
 						<div className="share">
