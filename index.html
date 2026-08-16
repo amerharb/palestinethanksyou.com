@@ -18,7 +18,7 @@
 		Link previews. Mastodon, Slack, WhatsApp and the rest build their card
 		from these, so they are what a shared link looks like. Kept in sync with
 		the description above by hand — there is no build step templating them.
-		Add og:image (1200x630) to get a picture in the card instead of text only.
+		og.png is generated from the live map data — see README.
 	-->
 	<meta property="og:type" content="website"/>
 	<meta property="og:site_name" content="Palestine Thanks You"/>
@@ -29,7 +29,16 @@
 		content="The states that recognize the State of Palestine, when each of them did, and the source for every date — on an interactive world map."
 	/>
 	<meta property="og:locale" content="en"/>
-	<meta name="twitter:card" content="summary"/>
+	<meta property="og:image" content="https://palestinethanksyou.com/og.png"/>
+	<meta property="og:image:type" content="image/png"/>
+	<meta property="og:image:width" content="1200"/>
+	<meta property="og:image:height" content="630"/>
+	<meta
+		property="og:image:alt"
+		content="A world map with the 159 states that recognize the State of Palestine filled in green."
+	/>
+	<meta name="twitter:card" content="summary_large_image"/>
+	<meta name="twitter:image" content="https://palestinethanksyou.com/og.png"/>
 	<meta name="twitter:title" content="Palestine Thanks You"/>
 	<meta
 		name="twitter:description"

@@ -25,14 +25,22 @@
   `<meta name="description">` in place of one that just repeated the title, plus
   `og:` and `twitter:` tags and a canonical URL. These are what Mastodon, Slack
   and WhatsApp build their preview card from, so they are part of the share
-  feature rather than separate from it. There is no `og:image` yet, so the card
-  is text-only
+  feature rather than separate from it, and a 1200x630 `og:image`
+  (`public/og.png`) so the card carries the map rather than being text only.
+  The picture is generated from `public/world.json` and `src/countries.ts`, so
+  it matches what the site shows — but the count is baked into it, so it needs
+  regenerating whenever a state is added
 
+- Add a README covering how to run it, where the data comes from and which two
+  dates deliberately depart from the UN annex, how the map geometry was made and
+  why it is 50m rather than 110m, and that the link-preview image has the count
+  baked in
 ### Changed
 - Adjust the border of MA and EH
 - Fix Grammar
 - Shorten the web app manifest's `short_name` to 🇵🇸🙏, so it is not truncated
   when the site is added to a home screen
+
 
 ### Removed
 - Remove the theme machinery, which never did anything: an inline script in
