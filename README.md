@@ -20,6 +20,19 @@ npm run preview
 
 No backend — it is a static site, deployed on Vercel from `main`.
 
+### Counting (sada)
+
+The site can report two anonymous events to [sada](https://github.com/amerharb/sada),
+the same collector the sawt apps use: the page was opened, and a share was
+clicked (which network). No cookies, no identifiers — the whole payload is
+`{ site, kind, name? }`. It is off unless both env variables are set (in
+Vercel, or a local `.env.local`):
+
+```
+VITE_SADA_ENABLED=true
+VITE_SADA_URL=https://sada.sawt.info
+```
+
 ## The data
 
 Everything the site claims lives in two files.

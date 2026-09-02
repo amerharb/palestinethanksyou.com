@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { postShare } from './sada'
 
 /*
  * Share links.
@@ -166,6 +167,7 @@ function ShareLinks({ text }: Props) {
 		const host = hostFrom(instance)
 		if (!host) return
 		remember(host)
+		postShare('mastodon') // counted here, not on opening the field
 		window.open(`https://${host}/share?text=${body}`, '_blank', 'noopener,noreferrer')
 		setOpen(false)
 	}
@@ -196,6 +198,7 @@ function ShareLinks({ text }: Props) {
 						rel="noopener noreferrer"
 						title={`Share on ${l.label}`}
 						aria-label={`Share on ${l.label}`}
+						onClick={() => postShare(l.name)}
 					>
 						<Logo name={l.name}/>
 					</a>
@@ -206,7 +209,11 @@ function ShareLinks({ text }: Props) {
 					className="share-link"
 					title={copied ? 'Link copied' : 'Copy link'}
 					aria-label={copied ? 'Link copied' : 'Copy link'}
-					onClick={async () => setCopied(await copyToClipboard(SITE_URL))}
+					onClick={async () => {
+						const done = await copyToClipboard(SITE_URL)
+						if (done) postShare('copylink')
+						setCopied(done)
+					}}
 				>
 					<CopyGlyph done={copied}/>
 				</button>
