@@ -13,7 +13,7 @@
  * failures are swallowed, because counting must never break the page.
  */
 
-const SITE = 'palestinethanksyou'
+const SITE = 'palestinethanksyou.com'
 
 const raw = (import.meta.env.VITE_SADA_URL ?? '').trim().replace(/\/+$/, '')
 const wellFormed = /^https?:\/\/[^\s/]+/.test(raw)
