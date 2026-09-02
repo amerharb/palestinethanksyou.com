@@ -2,6 +2,17 @@
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
+## [2026.09.02] 2026-09-02
+### Added
+- Count two anonymous things through [sada](https://github.com/amerharb/sada),
+  the same collector the sawt apps report to: the page was opened, and a
+  share was clicked — which network, with Mastodon counted when its server
+  form is actually submitted and copy-link only when the copy succeeded. No
+  cookies, no identifiers, no URLs; the whole payload is
+  `{ site, kind, name? }`, sent fire-and-forget so counting can never break
+  the page. Off by default: it turns on only where both `VITE_SADA_ENABLED`
+  and `VITE_SADA_URL` are set (Vercel has them, dev builds do not).
+
 ## [2026.08.16] 2026-08-16
 ### Added
 - Add share links between the thanks text and the population bar: Mastodon,
