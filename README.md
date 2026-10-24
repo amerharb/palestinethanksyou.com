@@ -51,8 +51,11 @@ the document it rests on. Government statements are preferred over press
 coverage. The column is incomplete and says so on the page.
 
 Dates may be `YYYY-MM-DD`, or `YYYY-MM` where only the month is documented.
-Rows are ordered newest first, then A–Z; the rank column is a competition
-ranking, so states sharing a date share a number and the next rank skips the tie.
+The list opens newest first and the three buttons above it switch to oldest
+first or A–Z by name; both date orders break ties A–Z rather than reversing
+the tie-break too. The rank column is a competition ranking by date, so states
+sharing a date share a number, the next rank skips the tie, and a state keeps
+its rank whichever order the list is in.
 
 ## The map
 

@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import './App.css'
 import { Analytics } from '@vercel/analytics/react'
 import WorldMap from './WorldMap'
 import ShareLinks from './ShareLinks'
+import SortButtons from './SortButtons'
 import {
 	COUNTRIES,
-	byNewest as countriesByNewest,
+	Order,
 	recognitionRanks,
+	sorted,
 	totalPopulation,
 	WORLD_POPULATION,
 } from './countries'
@@ -16,7 +19,8 @@ import { DEFAULT_LANG } from './lang'
 function App() {
 	/* becomes state once there is a language picker */
 	const lang = DEFAULT_LANG
-	const countries = countriesByNewest(COUNTRIES, lang)
+	const [order, setOrder] = useState<Order>('newest')
+	const countries = sorted(COUNTRIES, lang, order)
 	const rank = recognitionRanks(COUNTRIES)
 	const news = newsByNewest(NEWS)
 	const recognizingPopulation = totalPopulation(COUNTRIES)
@@ -65,6 +69,8 @@ function App() {
 								recognizes Palestine.
 							</p>
 						</div>
+
+						<SortButtons order={order} onChange={setOrder}/>
 
 						<ol className="country-list">
 							{countries.map(c => (

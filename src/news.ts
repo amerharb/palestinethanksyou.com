@@ -12,7 +12,8 @@ export type NewsItem = {
 }
 
 /*
- * The timeline column. Sorted newest-first by the UI, like the country list.
+ * The timeline column. Always sorted newest-first by the UI — unlike the
+ * country list, which the reader can reorder.
  * Every post should carry a `url` to the source it is based on.
  */
 export const NEWS: NewsItem[] = [

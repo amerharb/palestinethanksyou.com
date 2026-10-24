@@ -124,7 +124,49 @@
 	font-variant-numeric: tabular-nums;
 }
 
-/* left column: recognizing countries, newest first */
+/* left column: recognizing countries */
+
+/* order controls, left-aligned directly above the list they reorder */
+.sort-buttons {
+	display: flex;
+	justify-content: flex-start;
+	gap: 4px;
+	margin-bottom: 8px;
+}
+
+/* the global button rule is sized for real buttons; these are 28px squares */
+.sort-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border-radius: 6px;
+	color: var(--muted);
+}
+
+.sort-btn:hover {
+	color: var(--fg);
+}
+
+/* the order the list is actually in — nothing else on the page says which */
+.sort-btn[aria-pressed='true'] {
+	background-color: var(--active-bg);
+	border-color: var(--active-bg);
+	color: var(--fg);
+}
+
+.sort-icon {
+	width: 16px;
+	height: 16px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
 
 .country-list {
 	list-style: none;

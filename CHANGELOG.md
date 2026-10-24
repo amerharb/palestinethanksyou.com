@@ -16,6 +16,20 @@
   Regenerating the card also corrects its subtitle, which the old script had
   hardcoded a shade off `--muted`
 
+- Add three buttons above the country list for the order it is shown in:
+  newest first, oldest first, and A–Z by name. Down is newest and up is
+  oldest, the way a sorted column reads everywhere else — the arrow runs along
+  the dates rather than pointing at where the newest row lands. The pressed
+  button is the only thing on the page that says which order you are looking
+  at, so it carries `aria-pressed` and the active colour. Both date orders
+  break ties A–Z instead of reversing the tie-break as well, which would
+  reshuffle the fourteen states of 15 November 1988 for no reason a reader
+  could see. Rank comes from the dates alone, so it stays with its state in
+  every order — under A–Z it stops counting and starts showing how scattered
+  the dates are. The glyphs are drawn rather than set in type: a letter A as
+  SVG `<text>` would be at the mercy of the reader's font, the same hazard the
+  flag webfont exists to avoid
+
 ### Changed
 - Move the share row out of the countries column and centre it under the map,
   where it has the width of the page rather than a third of it, and make the
