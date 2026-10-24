@@ -70,8 +70,19 @@ fetches it on load, so a change needs a full page reload, not just HMR.
 `public/og.png` (1200×630) is what Mastodon, Facebook, X and the rest show when
 the site is shared, wired up by the `og:` tags in `index.html`.
 
-It is generated from `public/world.json` and `src/countries.ts`, so it stays
-true to the map — **but the count is baked into the image**. When a state is
-added, the picture still says the old number until it is regenerated. The
-generator is not committed; it renders an SVG of the map at 1200×630 with the
-title over it and converts that to PNG.
+Regenerate it with:
+
+```
+npm run og
+```
+
+It is built from `public/world.json`, `src/countries.ts` and the colours in
+`src/index.css`, so the card cannot drift from the map it is a picture of —
+**but the count is baked into the image**. Add a state and the picture keeps
+claiming the old number until this is re-run, so run it whenever the list
+changes and commit the result.
+
+`scripts/og-image.mjs` writes the SVG; `scripts/og-image.swift` rasterises it
+through AppKit, which needs macOS. That is the trade for adding no npm
+dependency to a project that deliberately has almost none — swap that step for
+resvg or sharp if it ever has to run in CI.

@@ -2,6 +2,20 @@
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
+## [2026.10.24] 2026-10-24
+### Added
+- Add the `og:image` generator as a script, `npm run og`. The 1200x630 card was
+  drawn by a throwaway script that was never committed, so the only way to
+  redraw it after a state was added was to write one again. It now reads
+  `public/world.json`, `src/countries.ts` and the colours out of
+  `src/index.css`, so the card cannot drift from the map it is a picture of,
+  and it throws rather than guessing when a colour it needs is missing.
+  `scripts/og-image.mjs` writes the SVG and `scripts/og-image.swift` rasterises
+  it through AppKit, which keeps the npm dependencies at none for a project
+  that deliberately has almost none, at the cost of running only on macOS.
+  Regenerating the card also corrects its subtitle, which the old script had
+  hardcoded a shade off `--muted`
+
 ## [2026.09.02] 2026-09-02
 ### Added
 - Count two anonymous things through [sada](https://github.com/amerharb/sada),
