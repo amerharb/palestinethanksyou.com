@@ -16,8 +16,8 @@ import { postShare } from './sada'
  * Facebook and LinkedIn ignore any text passed to them and use only those tags;
  * the others take text as well.
  *
- * Brand logos are the official marks from simple-icons (CC0). The share, copy
- * and tick glyphs are drawn here — they are not anyone's trademark.
+ * Brand logos are the official marks from simple-icons (CC0). The copy and
+ * tick glyphs are drawn here — they are not anyone's trademark.
  */
 
 const SITE_URL = 'https://palestinethanksyou.com'
@@ -38,19 +38,6 @@ function Logo({ name }: { name: keyof typeof LOGO }) {
 	return (
 		<svg className="share-logo" viewBox="0 0 24 24" aria-hidden="true">
 			<path d={LOGO[name]}/>
-		</svg>
-	)
-}
-
-/* generic share glyph: three nodes joined, labelling the row */
-function ShareGlyph() {
-	return (
-		<svg className="share-glyph" viewBox="0 0 24 24" aria-hidden="true">
-			<line x1="8.6" y1="10.7" x2="15.4" y2="6.5"/>
-			<line x1="8.6" y1="13.3" x2="15.4" y2="17.5"/>
-			<circle cx="18" cy="5" r="2.6"/>
-			<circle cx="6" cy="12" r="2.6"/>
-			<circle cx="18" cy="19" r="2.6"/>
 		</svg>
 	)
 }
@@ -175,7 +162,6 @@ function ShareLinks({ text }: Props) {
 	return (
 		<div className="share-links-wrap">
 			<div className="share-links">
-				<ShareGlyph/>
 				<span className="visually-hidden">Share this page:</span>
 
 				<button

@@ -2,6 +2,50 @@
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
+## [2026.10.24] 2026-10-24
+### Added
+- Add the `og:image` generator as a script, `npm run og`. The 1200x630 card was
+  drawn by a throwaway script that was never committed, so the only way to
+  redraw it after a state was added was to write one again. It now reads
+  `public/world.json`, `src/countries.ts` and the colours out of
+  `src/index.css`, so the card cannot drift from the map it is a picture of,
+  and it throws rather than guessing when a colour it needs is missing.
+  `scripts/og-image.mjs` writes the SVG and `scripts/og-image.swift` rasterises
+  it through AppKit, which keeps the npm dependencies at none for a project
+  that deliberately has almost none, at the cost of running only on macOS.
+  Regenerating the card also corrects its subtitle, which the old script had
+  hardcoded a shade off `--muted`
+
+- Add three buttons above the country list for the order it is shown in:
+  newest first, oldest first, and A–Z by name. Down is newest and up is
+  oldest, the way a sorted column reads everywhere else — the arrow runs along
+  the dates rather than pointing at where the newest row lands. The pressed
+  button is the only thing on the page that says which order you are looking
+  at, so it carries `aria-pressed` and the active colour. Both date orders
+  break ties A–Z instead of reversing the tie-break as well, which would
+  reshuffle the fourteen states of 15 November 1988 for no reason a reader
+  could see. Rank comes from the dates alone, so it stays with its state in
+  every order — under A–Z it stops counting and starts showing how scattered
+  the dates are. The glyphs are drawn rather than set in type: a letter A as
+  SVG `<text>` would be at the mercy of the reader's font, the same hazard the
+  flag webfont exists to avoid
+
+### Changed
+- Move the share row out of the countries column and centre it under the map,
+  where it has the width of the page rather than a third of it, and make the
+  icons bigger to match: 22px inside a 36px target, up from 17px inside 27px.
+  Nine icons that size no longer fit one line on a phone, so under 420px they
+  give back padding and gap, and under 350px three px of size as well. The
+  alternative was a row that wrapped 8 + 1, leaving copy-link stranded on a
+  line of its own
+
+### Removed
+- Remove the share glyph from the left of the row — three joined nodes drawn to
+  label what the row was for, with nothing behind them to click. The nine logos
+  beside it already say what it is, and the row reads better as nine equal
+  things than as a label followed by eight buttons and a ninth. The hidden
+  "Share this page:" text it sat next to stays, so screen readers keep the label
+
 ## [2026.09.02] 2026-09-02
 ### Added
 - Count two anonymous things through [sada](https://github.com/amerharb/sada),

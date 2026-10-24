@@ -124,7 +124,49 @@
 	font-variant-numeric: tabular-nums;
 }
 
-/* left column: recognizing countries, newest first */
+/* left column: recognizing countries */
+
+/* order controls, left-aligned directly above the list they reorder */
+.sort-buttons {
+	display: flex;
+	justify-content: flex-start;
+	gap: 4px;
+	margin-bottom: 8px;
+}
+
+/* the global button rule is sized for real buttons; these are 28px squares */
+.sort-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	padding: 0;
+	border-radius: 6px;
+	color: var(--muted);
+}
+
+.sort-btn:hover {
+	color: var(--fg);
+}
+
+/* the order the list is actually in — nothing else on the page says which */
+.sort-btn[aria-pressed='true'] {
+	background-color: var(--active-bg);
+	border-color: var(--active-bg);
+	color: var(--fg);
+}
+
+.sort-icon {
+	width: 16px;
+	height: 16px;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
 
 .country-list {
 	list-style: none;
@@ -410,35 +452,25 @@
 	gap: 5px;
 }
 
-/* one line on a wide screen, wrapping naturally when there isn't room */
-/* share row: Mastodon, Facebook, X as icon links under the footer rule */
-
-/* sits between the thanks text and the population bar, centred on the column */
+/*
+ * Share row: nine icons, sitting under the map and centred on the page
+ * rather than on a column, which is what lets them be this size.
+ */
 .share-links-wrap {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 6px;
-	margin: 0 0 14px;
+	gap: 8px;
+	margin: 14px 0 0;
 }
 
-/* nine icons in a third-width column, so it has to be allowed to wrap */
+/* still allowed to wrap — nine icons have to fit a phone too */
 .share-links {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	justify-content: center;
-	gap: 2px;
-}
-
-/* the generic glyph labelling the row — drawn, not a brand mark */
-.share-glyph {
-	width: 15px;
-	height: 15px;
-	color: var(--muted);
-	fill: currentColor;
-	stroke: currentColor;
-	stroke-width: 1.6;
+	gap: 6px;
 }
 
 /* one rule for both the links and the Mastodon button, so they match exactly */
@@ -446,7 +478,7 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 5px;
+	padding: 7px;
 	border: 0;
 	border-radius: 6px;
 	background: none;
@@ -460,20 +492,54 @@
 }
 
 .share-logo {
-	width: 17px;
-	height: 17px;
+	width: 22px;
+	height: 22px;
 	fill: currentColor;
 }
 
 /* the drawn copy / tick glyph — outlined, unlike the filled brand marks */
 .share-stroke-icon {
-	width: 16px;
-	height: 16px;
+	width: 21px;
+	height: 21px;
 	fill: none;
 	stroke: currentColor;
 	stroke-width: 2;
 	stroke-linecap: round;
 	stroke-linejoin: round;
+}
+
+/*
+ * On a phone the nine icons are a few px too wide for one line and wrap 8 + 1,
+ * leaving copy-link stranded on a row of its own. Padding and gap go first, so
+ * at this step the icons themselves are still full size.
+ * Must stay after the rules it overrides — a media query adds no specificity.
+ */
+@media (max-width: 420px) {
+	.share-links {
+		gap: 3px;
+	}
+
+	.share-link {
+		padding: 5px;
+	}
+}
+
+/* narrower still, and padding alone is not enough: the icons give back the
+   3px they gained, which is the most that fits nine across at 320px */
+@media (max-width: 350px) {
+	.share-link {
+		padding: 4px;
+	}
+
+	.share-logo {
+		width: 19px;
+		height: 19px;
+	}
+
+	.share-stroke-icon {
+		width: 18px;
+		height: 18px;
+	}
 }
 
 /* the Mastodon instance field, shown once its icon is pressed */
@@ -533,6 +599,7 @@
 	border: 0;
 }
 
+/* one line on a wide screen, wrapping naturally when there isn't room */
 .footer-note {
 	margin: 0;
 	font-size: 0.85rem;

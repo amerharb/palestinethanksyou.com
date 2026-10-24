@@ -1,6 +1,6 @@
 {
   "name": "palestinethanksyou",
-  "version": "2026.09.02",
+  "version": "2026.10.24",
   "private": true,
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -19,7 +19,8 @@
     "start": "vite",
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "og": "node scripts/og-image.mjs"
   },
   "engines": {
     "node": ">=20.19.0",

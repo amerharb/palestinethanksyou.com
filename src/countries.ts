@@ -47,7 +47,7 @@ export type Country = {
  * share bar under the thanks text (see totalPopulation and WORLD_POPULATION).
  *
  * Listed newest-first then A–Z, but order here doesn't matter: the UI sorts
- * (see byNewest).
+ * (see sorted).
  */
 export const COUNTRIES: Country[] = [
 	{code: 'sm', name: {en: 'San Marino'}, flag: '🇸🇲', recognized: '2025-09-23', population: 34109},
@@ -212,7 +212,7 @@ export const COUNTRIES: Country[] = [
 ]
 
 /*
- * Newest recognition first, then A–Z by the country's name in `lang`.
+ * The key the date orders compare on.
  *
  * ISO dates compare correctly as plain strings, except that a month-only
  * 'YYYY-MM' is a prefix of every day in that month and would sort after all of
@@ -221,10 +221,25 @@ export const COUNTRIES: Country[] = [
 const sortKey = (recognized: string) =>
 	recognized.length === 7 ? `${recognized}-01` : recognized
 
-export function byNewest(list: Country[], lang: Lang): Country[] {
+/*
+ * The orders the list can be shown in. 'newest' is what the page opens on.
+ *
+ * Both date orders break ties the same way, A–Z — reversing the tie-break
+ * along with the dates would shuffle the fourteen states of 15 November 1988
+ * for no reason a reader could see.
+ */
+export type Order = 'newest' | 'oldest' | 'alpha'
+
+export function sorted(list: Country[], lang: Lang, order: Order): Country[] {
+	const byName = (a: Country, b: Country) =>
+		a.name[lang].localeCompare(b.name[lang], lang)
+
+	if (order === 'alpha') return [...list].sort(byName)
+
+	const direction = order === 'newest' ? -1 : 1
 	return [...list].sort((a, b) =>
-		sortKey(b.recognized).localeCompare(sortKey(a.recognized))
-		|| a.name[lang].localeCompare(b.name[lang], lang))
+		direction * sortKey(a.recognized).localeCompare(sortKey(b.recognized))
+		|| byName(a, b))
 }
 
 /*
@@ -253,11 +268,11 @@ export function totalPopulation(list: Country[]): number {
  *
  * A rank is one more than the number of states that recognized strictly
  * earlier, which falls out of taking the first index of each key in the
- * ascending list. Keys are the same ones byNewest sorts on, so the numbers
+ * ascending list. Keys are the same ones `sorted` uses, so the numbers
  * always agree with the order the rows are displayed in.
  */
 export function recognitionRanks(list: Country[]): Map<string, number> {
-	/* same comparison byNewest uses, so ranks can't disagree with row order */
+	/* same keys the date orders sort on, so ranks can't disagree with the rows */
 	const ascending = list.map(c => sortKey(c.recognized)).sort((a, b) => a.localeCompare(b))
 	const rankOfKey = new Map<string, number>()
 	ascending.forEach((key, i) => {

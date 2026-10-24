@@ -1,11 +1,14 @@
+import { useState } from 'react'
 import './App.css'
 import { Analytics } from '@vercel/analytics/react'
 import WorldMap from './WorldMap'
 import ShareLinks from './ShareLinks'
+import SortButtons from './SortButtons'
 import {
 	COUNTRIES,
-	byNewest as countriesByNewest,
+	Order,
 	recognitionRanks,
+	sorted,
 	totalPopulation,
 	WORLD_POPULATION,
 } from './countries'
@@ -16,7 +19,8 @@ import { DEFAULT_LANG } from './lang'
 function App() {
 	/* becomes state once there is a language picker */
 	const lang = DEFAULT_LANG
-	const countries = countriesByNewest(COUNTRIES, lang)
+	const [order, setOrder] = useState<Order>('newest')
+	const countries = sorted(COUNTRIES, lang, order)
 	const rank = recognitionRanks(COUNTRIES)
 	const news = newsByNewest(NEWS)
 	const recognizingPopulation = totalPopulation(COUNTRIES)
@@ -31,6 +35,11 @@ function App() {
 			<main className="layout">
 				<section className="col map-col">
 					<WorldMap countries={countries} lang={lang}/>
+
+					{/* centred under the map, where it has the full page width */}
+					<ShareLinks
+						text={`${countries.length} states recognize the State of Palestine 🇵🇸`}
+					/>
 				</section>
 
 				{/* both columns sit below the map */}
@@ -43,10 +52,6 @@ function App() {
 								{countries.length} states for recognizing the State of Palestine. 🇵🇸
 							</p>
 						</div>
-
-						<ShareLinks
-							text={`${countries.length} states recognize the State of Palestine 🇵🇸`}
-						/>
 
 						{/* share of humanity living in states that recognize Palestine */}
 						<div className="share">
@@ -64,6 +69,8 @@ function App() {
 								recognizes Palestine.
 							</p>
 						</div>
+
+						<SortButtons order={order} onChange={setOrder}/>
 
 						<ol className="country-list">
 							{countries.map(c => (
