@@ -16,6 +16,22 @@
   Regenerating the card also corrects its subtitle, which the old script had
   hardcoded a shade off `--muted`
 
+### Changed
+- Move the share row out of the countries column and centre it under the map,
+  where it has the width of the page rather than a third of it, and make the
+  icons bigger to match: 22px inside a 36px target, up from 17px inside 27px.
+  Nine icons that size no longer fit one line on a phone, so under 420px they
+  give back padding and gap, and under 350px three px of size as well. The
+  alternative was a row that wrapped 8 + 1, leaving copy-link stranded on a
+  line of its own
+
+### Removed
+- Remove the share glyph from the left of the row — three joined nodes drawn to
+  label what the row was for, with nothing behind them to click. The nine logos
+  beside it already say what it is, and the row reads better as nine equal
+  things than as a label followed by eight buttons and a ninth. The hidden
+  "Share this page:" text it sat next to stays, so screen readers keep the label
+
 ## [2026.09.02] 2026-09-02
 ### Added
 - Count two anonymous things through [sada](https://github.com/amerharb/sada),

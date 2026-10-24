@@ -31,6 +31,11 @@ function App() {
 			<main className="layout">
 				<section className="col map-col">
 					<WorldMap countries={countries} lang={lang}/>
+
+					{/* centred under the map, where it has the full page width */}
+					<ShareLinks
+						text={`${countries.length} states recognize the State of Palestine 🇵🇸`}
+					/>
 				</section>
 
 				{/* both columns sit below the map */}
@@ -43,10 +48,6 @@ function App() {
 								{countries.length} states for recognizing the State of Palestine. 🇵🇸
 							</p>
 						</div>
-
-						<ShareLinks
-							text={`${countries.length} states recognize the State of Palestine 🇵🇸`}
-						/>
 
 						{/* share of humanity living in states that recognize Palestine */}
 						<div className="share">
