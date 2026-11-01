@@ -2,6 +2,27 @@
 
 <!-- https://keepachangelog.com/en/1.0.0/ -->
 
+## [2026.11.01] 2026-11-01
+### Added
+- Add a 💬 Feedback button in the footer, opening a sheet for telling the
+  developer something. What is worth hearing about a site whose whole claim is
+  a list of dates is mostly one of two things, so those are the first two
+  choices and they are in those words — something is wrong (a date, a source
+  that no longer loads), something is missing (a state, or a date with no
+  source yet) — with "something else" after them. Underneath they are sada's
+  own `bug` / `add` / `other`, which is all the collector ever needs to know.
+  Everything but the first field is optional, including the email, which is
+  only there if someone wants a reply; only what was actually typed travels,
+  with the page version for context. An address or a link that does not look
+  like one keeps the Send button disabled, because nothing downstream can ask
+  the sender what they meant. It is a native `<dialog>` opened with
+  `showModal()`, so Escape, the backdrop and focus containment are the
+  browser's; a click on the backdrop closes it too. Sending is fire-and-forget
+  like every other post to sada, so the thanks says the message was handed to
+  the browser rather than claiming it arrived. The button is not drawn at all
+  unless sada is configured — a form that silently drops what someone took the
+  trouble to write would be worse than no form
+
 ## [2026.10.24] 2026-10-24
 ### Added
 - Add the `og:image` generator as a script, `npm run og`. The 1200x630 card was
