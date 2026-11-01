@@ -599,6 +599,192 @@
 	border: 0;
 }
 
+/* feedback */
+
+.footer-feedback {
+	margin: 2px 0 0;
+}
+
+/* a link in everything but the element: it opens a dialog, so it is a button */
+.feedback-open {
+	font-size: 0.85rem;
+	line-height: 1.5;
+	padding: 2px 6px;
+	border: 0;
+	border-radius: 6px;
+	background: none;
+	color: var(--link);
+}
+
+.feedback-open:hover {
+	background-color: var(--surface-hover);
+	text-decoration: underline;
+}
+
+/*
+ * The dialog has no padding of its own, so a click on the backdrop lands on
+ * the dialog element rather than on anything inside it — which is what the
+ * close-on-backdrop handler in FeedbackSheet tests for.
+ */
+.feedback-dialog {
+	padding: 0;
+	width: min(32rem, calc(100vw - 32px));
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	background-color: var(--bg);
+	color: var(--fg);
+	box-shadow: 0 16px 48px rgb(0 0 0 / 0.3);
+}
+
+.feedback-dialog::backdrop {
+	background-color: rgb(0 0 0 / 0.45);
+}
+
+.feedback-inner {
+	padding: 18px 20px 20px;
+}
+
+.feedback-head {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 12px;
+	margin-bottom: 14px;
+}
+
+/* out-specifies the small uppercase `.col h2`, which this is not */
+.feedback-inner .feedback-title {
+	margin: 0;
+	font-size: 1.2rem;
+	font-weight: 700;
+	text-transform: none;
+	letter-spacing: normal;
+	color: var(--fg);
+}
+
+.feedback-close {
+	flex: none;
+	font-size: 0.9rem;
+	line-height: 1;
+	padding: 5px 8px;
+	border: 0;
+	background: none;
+	color: var(--muted);
+}
+
+.feedback-close:hover {
+	color: var(--fg);
+	background-color: var(--surface-hover);
+}
+
+.feedback-form {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.feedback-kinds {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.feedback-kinds legend {
+	padding: 0;
+	margin-bottom: 6px;
+	font-size: 0.8rem;
+	color: var(--muted);
+}
+
+.feedback-kind {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 0.9rem;
+	cursor: pointer;
+}
+
+.feedback-hint {
+	margin: -4px 0 0;
+	font-size: 0.78rem;
+	line-height: 1.45;
+	color: var(--muted);
+}
+
+.feedback-field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: 0.82rem;
+}
+
+/* "optional" rides along after the label rather than sitting in it */
+.feedback-field > span em {
+	font-style: normal;
+	font-size: 0.72rem;
+	color: var(--muted);
+}
+
+.feedback-field input,
+.feedback-field textarea {
+	font-family: inherit;
+	font-size: 0.88rem;
+	padding: 7px 9px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background-color: var(--bg);
+	color: var(--fg);
+	resize: vertical;
+}
+
+.feedback-field [aria-invalid='true'] {
+	border-color: var(--map-palestine);
+}
+
+.feedback-wrong {
+	font-style: normal;
+	font-size: 0.72rem;
+	color: var(--map-palestine);
+}
+
+.feedback-note {
+	margin: 0;
+	font-size: 0.72rem;
+	line-height: 1.45;
+	color: var(--muted);
+}
+
+.feedback-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.feedback-actions button {
+	font-size: 0.85rem;
+	line-height: 1;
+	padding: 8px 14px;
+	border-radius: 6px;
+}
+
+.feedback-actions button:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+.feedback-done {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	font-size: 0.9rem;
+}
+
+.feedback-done p:first-child {
+	margin: 0;
+}
+
 /* one line on a wide screen, wrapping naturally when there isn't room */
 .footer-note {
 	margin: 0;

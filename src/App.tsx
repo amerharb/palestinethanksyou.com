@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import WorldMap from './WorldMap'
 import ShareLinks from './ShareLinks'
 import SortButtons from './SortButtons'
+import FeedbackSheet from './FeedbackSheet'
 import {
 	COUNTRIES,
 	Order,
@@ -15,11 +16,13 @@ import {
 import { NEWS, byNewest as newsByNewest } from './news'
 import { formatBillions, formatDate } from './format'
 import { DEFAULT_LANG } from './lang'
+import { SADA_ON } from './sada'
 
 function App() {
 	/* becomes state once there is a language picker */
 	const lang = DEFAULT_LANG
 	const [order, setOrder] = useState<Order>('newest')
+	const [feedbackOpen, setFeedbackOpen] = useState(false)
 	const countries = sorted(COUNTRIES, lang, order)
 	const rank = recognitionRanks(COUNTRIES)
 	const news = newsByNewest(NEWS)
@@ -152,8 +155,28 @@ function App() {
 					>kosovothanksyou.com</a>. It is not affiliated with any government or
 					political organization.
 				</p>
+				{/*
+				  * Only offered where there is somewhere to send it — see SADA_ON.
+				  * A form that quietly drops what someone wrote would be worse than
+				  * no form at all.
+				  */}
+				{SADA_ON && (
+					<p className="footer-feedback">
+						<button
+							type="button"
+							className="feedback-open"
+							onClick={() => setFeedbackOpen(true)}
+						>
+							💬 Feedback
+						</button>
+					</p>
+				)}
 				<p className="updated">Last update: {__APP_VERSION__}</p>
 			</footer>
+
+			{SADA_ON && (
+				<FeedbackSheet open={feedbackOpen} onClose={() => setFeedbackOpen(false)}/>
+			)}
 			<Analytics/>
 		</div>
 	)

@@ -20,13 +20,29 @@ npm run preview
 
 No backend — it is a static site, deployed on Vercel from `main`.
 
-### Counting (sada)
+### sada
 
-The site can report two anonymous events to [sada](https://github.com/amerharb/sada),
-the same collector the sawt apps use: the page was opened, and a share was
-clicked (which network). No cookies, no identifiers — the whole payload is
-`{ site, kind, name? }`. It is off unless both env variables are set (in
-Vercel, or a local `.env.local`):
+Two things go to [sada](https://github.com/amerharb/sada), the same collector
+the sawt apps use.
+
+Two anonymous events: the page was opened, and a share was clicked (which
+network). No cookies, no identifiers — the whole payload is
+`{ site, kind, name? }`.
+
+And feedback, from the 💬 button in the footer: `POST /v1/feedback` with
+`{ app, kind, info }`, where `kind` is sada's own `bug` / `add` / `other` and
+`info` carries only the fields someone actually filled in, plus the page
+version. sada lists `palestinethanksyou.com` in its `FEEDBACK_APPS`, so a new
+`kind` or a renamed site has to be added there first or the post is refused
+with a 422 that nothing here waits for.
+
+Neither call sends anything identifying, but sada stores the country each one
+arrives from, resolved from the IP at its end. The note in the feedback sheet
+says so, and should keep saying so if that ever changes.
+
+Both are off unless both env variables are set (in Vercel, or a local
+`.env.local`) — and the feedback button hides itself when they are not, rather
+than dropping what someone wrote:
 
 ```
 VITE_SADA_ENABLED=true
